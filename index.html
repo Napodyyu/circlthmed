@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#f8fafc">
+    <meta name="theme-color" content="#12151b">
     <title id="docTitle">วงกลมธาตุเจ้าเรือนออนไลน์</title>
     <style>
         :root {
-            --text-primary: #0f172a;
-            --text-secondary: #1e293b;
-            --text-muted: #475569;
-            --card-bg-base: rgba(255, 255, 255, 0.88);
+            --text-primary: #1e293b;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --card-bg-base: rgba(255, 255, 255, 0.94);
             --accent: #0284c7;
             --radius-lg: 18px;
             --radius-md: 12px;
             --radius-sm: 8px;
             --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
-            --blur-strong: blur(28px) saturate(180%);
-            --blur-mid: blur(18px) saturate(170%);
-            --blur-soft: blur(12px) saturate(160%);
+            --blur-strong: blur(24px) saturate(140%);
+            --blur-mid: blur(16px) saturate(130%);
+            --blur-soft: blur(10px);
 
             /* Typography */
             --fs-h1: clamp(1rem, 2.8vw, 1.35rem);
@@ -26,28 +26,28 @@
             --fs-h3: clamp(0.9rem, 2.2vw, 1.1rem);
             --fs-body: clamp(0.82rem, 1.8vw, 0.95rem);
             --fs-small: clamp(0.72rem, 1.5vw, 0.82rem);
-            --fs-card-val: clamp(1.1rem, 2.6vw, 1.38rem);
+            --fs-card-val: clamp(1.08rem, 2.5vw, 1.34rem);
         }
 
-        /* ---------------- DARK MODE (COMFORTABLE & DEEP) ---------------- */
+        /* ---------------- SOFT CHARCOAL DARK MODE (EASY ON THE EYES, NEAR-WHITE TEXT) ---------------- */
         body.theme-dark {
             --text-primary: #f8fafc;
-            --text-secondary: #e2e8f0;
+            --text-secondary: #f1f5f9;
             --text-muted: #cbd5e1;
-            --card-bg-base: rgba(15, 23, 42, 0.88);
-            background-color: #030712 !important;
+            --card-bg-base: rgba(26, 30, 39, 0.92);
+            background-color: #12151b !important;
             color: #f8fafc;
         }
 
         body.theme-dark .container {
-            background: var(--card-bg-base);
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+            background: rgba(22, 26, 34, 0.95);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
         }
 
         body.theme-dark .app-header {
-            background: rgba(3, 7, 18, 0.92) !important;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+            background: rgba(18, 21, 27, 0.94) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
 
         *, *::before, *::after {
@@ -72,49 +72,48 @@
         .bg-blob {
             position: fixed;
             border-radius: 50%;
-            filter: blur(90px);
+            filter: blur(100px);
             z-index: -1;
-            opacity: 0.35;
+            opacity: 0.22;
             pointer-events: none;
             transition: all 0.8s ease;
-            animation: floatBlob 16s infinite alternate ease-in-out;
+            animation: floatBlob 18s infinite alternate ease-in-out;
         }
 
-        .blob-1 { top: -10%; left: -10%; width: 480px; height: 480px; background: linear-gradient(135deg, #cbd5e1, #94a3b8); }
-        .blob-2 { bottom: -10%; right: -10%; width: 520px; height: 520px; background: linear-gradient(135deg, #bae6fd, #38bdf8); }
-        .blob-3 { top: 40%; left: 45%; width: 360px; height: 360px; background: linear-gradient(135deg, #ddd6fe, #c4b5fd); opacity: 0.2; }
+        .blob-1 { top: -10%; left: -10%; width: 440px; height: 440px; background: #cbd5e1; }
+        .blob-2 { bottom: -10%; right: -10%; width: 480px; height: 480px; background: #93c5fd; }
+        .blob-3 { top: 40%; left: 45%; width: 340px; height: 340px; background: #c7d2fe; opacity: 0.15; }
 
-        body.theme-dark .blob-1 { background: #1e293b; opacity: 0.2; }
-        body.theme-dark .blob-2 { background: #0369a1; opacity: 0.15; }
-        body.theme-dark .blob-3 { background: #4c1d95; opacity: 0.12; }
+        body.theme-dark .blob-1 { background: #1e2430; opacity: 0.25; }
+        body.theme-dark .blob-2 { background: #14324a; opacity: 0.22; }
+        body.theme-dark .blob-3 { background: #262040; opacity: 0.18; }
 
         @keyframes floatBlob {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(25px, 35px) scale(1.04); }
+            100% { transform: translate(20px, 30px) scale(1.03); }
         }
 
-        /* ---------------- PAGE TURN / SLIDE TRANSITIONS ---------------- */
-        .fade-in { animation: pageTurnIn 0.45s var(--ease-spring) forwards; }
+        .fade-in { animation: pageTurnIn 0.4s var(--ease-spring) forwards; }
 
         @keyframes pageTurnIn {
-            0% { opacity: 0; transform: perspective(1000px) rotateY(-4deg) translateY(12px); }
-            100% { opacity: 1; transform: perspective(1000px) rotateY(0) translateY(0); }
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        .slide-trans-left { animation: slideLeftIn 0.32s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        .slide-trans-right { animation: slideRightIn 0.32s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .slide-trans-left { animation: slideLeftIn 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+        .slide-trans-right { animation: slideRightIn 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 
         @keyframes slideLeftIn {
-            from { opacity: 0; transform: translateX(45px) scale(0.97); }
-            to { opacity: 1; transform: translateX(0) scale(1); }
+            from { opacity: 0; transform: translateX(35px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes slideRightIn {
-            from { opacity: 0; transform: translateX(-45px) scale(0.97); }
-            to { opacity: 1; transform: translateX(0) scale(1); }
+            from { opacity: 0; transform: translateX(-35px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        /* ---------------- STICKY HEADER (THEMED DYNAMICALLY) ---------------- */
+        /* ---------------- STICKY HEADER ---------------- */
         .app-header {
             position: sticky;
             top: 0;
@@ -125,16 +124,16 @@
             gap: 12px;
             padding: 12px 16px;
             margin: 0 -16px 18px -16px;
-            background: rgba(241, 245, 249, 0.92);
+            background: rgba(241, 245, 249, 0.94);
             backdrop-filter: var(--blur-strong);
             -webkit-backdrop-filter: var(--blur-strong);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            border-bottom: 1px solid rgba(203, 213, 225, 0.7);
             transition: all 0.35s ease;
         }
 
         .brand-title {
             font-size: var(--fs-h1);
-            font-weight: 800;
+            font-weight: 700;
             color: var(--text-primary);
             display: flex;
             align-items: center;
@@ -144,7 +143,7 @@
         .brand-title::before {
             content: "◈";
             color: var(--accent);
-            font-size: 1.1em;
+            font-size: 1.05em;
         }
 
         .header-controls {
@@ -162,50 +161,50 @@
             padding: 0;
             border-radius: var(--radius-sm);
             cursor: pointer;
-            border: 1px solid rgba(148, 163, 184, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             background: rgba(255, 255, 255, 0.85);
             transition: all 0.2s ease;
         }
 
         .flag-icon-btn svg {
-            width: 24px;
-            height: 18px;
+            width: 22px;
+            height: 16px;
             border-radius: 2px;
             object-fit: cover;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .flag-icon-btn:hover {
             background: #ffffff;
             border-color: var(--accent);
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         body.theme-dark .flag-icon-btn {
-            background: rgba(30, 41, 59, 0.85);
+            background: #1a1e27;
             border-color: rgba(255, 255, 255, 0.15);
         }
 
         body.theme-dark .flag-icon-btn:hover {
-            background: #1e293b;
+            background: #242a36;
             border-color: #38bdf8;
         }
 
         .live-dot {
             width: 8px;
             height: 8px;
-            background-color: #ef4444;
+            background-color: #f43f5e;
             border-radius: 50%;
             display: inline-block;
-            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
-            animation: pulseRed 1.6s infinite;
+            box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4);
+            animation: pulseRed 2s infinite;
             margin-right: 6px;
         }
 
         @keyframes pulseRed {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.5); }
+            70% { box-shadow: 0 0 0 6px rgba(244, 63, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
         }
 
         .today-mini-box {
@@ -214,17 +213,18 @@
             background: var(--card-bg-base);
             backdrop-filter: var(--blur-mid);
             -webkit-backdrop-filter: var(--blur-mid);
-            border: 1px solid rgba(226, 232, 240, 0.9);
+            border: 1px solid rgba(203, 213, 225, 0.7);
             padding: 6px 14px;
             border-radius: 999px;
             font-size: var(--fs-small);
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 14px;
         }
 
         body.theme-dark .today-mini-box {
             border-color: rgba(255, 255, 255, 0.12);
+            background: #181d26;
         }
 
         .container {
@@ -233,10 +233,10 @@
             background: var(--card-bg-base);
             backdrop-filter: var(--blur-strong);
             -webkit-backdrop-filter: var(--blur-strong);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             border-radius: var(--radius-lg);
             padding: clamp(14px, 3vw, 28px);
-            box-shadow: 0 16px 48px rgba(15, 23, 42, 0.06);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
             transition: all 0.35s ease;
         }
 
@@ -267,8 +267,12 @@
             max-width: 360px;
             aspect-ratio: 1 / 1;
             margin: 0 auto;
-            filter: drop-shadow(0 12px 20px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.08));
             transition: all 0.5s ease;
+        }
+
+        body.theme-dark .wheel-container {
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
         }
 
         .wheel {
@@ -285,7 +289,7 @@
         #middle-wheel, #res-middle-wheel { z-index: 2; }
         #top-wheel, #res-top-wheel { z-index: 3; }
 
-        /* ---------------- DISTINCT FRAMED BADGES ---------------- */
+        /* ---------------- SOFT BADGES ---------------- */
         .framed-label-badge {
             display: inline-flex;
             align-items: center;
@@ -293,16 +297,16 @@
             padding: 5px 12px;
             border-radius: var(--radius-sm);
             font-size: var(--fs-body);
-            font-weight: 800;
-            border: 2px solid var(--accent);
-            background: rgba(2, 132, 199, 0.12);
-            color: var(--accent);
+            font-weight: 700;
+            border: 1px solid rgba(2, 132, 199, 0.3);
+            background: rgba(2, 132, 199, 0.08);
+            color: #0369a1;
             margin-bottom: 8px;
         }
 
         body.theme-dark .framed-label-badge {
-            background: rgba(56, 189, 248, 0.16);
-            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            border-color: rgba(56, 189, 248, 0.3);
             color: #7dd3fc;
         }
 
@@ -311,27 +315,26 @@
             padding: 8px 16px;
             border-radius: var(--radius-md);
             font-size: var(--fs-h3);
-            font-weight: 900;
-            border: 2px solid var(--scrip-border, #b45309);
-            background: var(--scrip-bg, #26160c);
-            color: var(--scrip-header, #fde68a);
+            font-weight: 800;
+            border: 1.5px solid var(--scrip-border, #d6c5b3);
+            background: var(--scrip-bg, #fbf8f5);
+            color: var(--scrip-header, #4a2c17);
             margin-bottom: 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
-        /* Floating Notification / Direct Type Toast */
         .type-toast {
             position: fixed;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(20px);
-            background: #0f172a;
-            color: #f8fafc;
+            background: #1e293b;
+            color: #f1f5f9;
             padding: 8px 18px;
             border-radius: 999px;
-            font-weight: 700;
+            font-weight: 600;
             font-size: var(--fs-small);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
             pointer-events: none;
             opacity: 0;
             transition: all 0.25s ease;
@@ -344,15 +347,15 @@
         }
 
         body.theme-dark .type-toast {
-            background: #f8fafc;
-            color: #0f172a;
+            background: #2b3240;
+            color: #ffffff;
         }
 
         .glass-picker-card {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.45);
             backdrop-filter: var(--blur-mid);
             -webkit-backdrop-filter: var(--blur-mid);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(203, 213, 225, 0.6);
             border-radius: var(--radius-md);
             padding: 6px;
             position: relative;
@@ -360,8 +363,8 @@
         }
 
         body.theme-dark .glass-picker-card {
-            background: rgba(30, 41, 59, 0.5);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: #161b24;
+            border-color: rgba(255, 255, 255, 0.08);
         }
 
         .drum-picker-container {
@@ -379,17 +382,17 @@
             right: 4px;
             height: 42px;
             transform: translateY(-50%);
-            background: rgba(2, 132, 199, 0.08);
-            border-top: 1.5px solid rgba(2, 132, 199, 0.4);
-            border-bottom: 1.5px solid rgba(2, 132, 199, 0.4);
+            background: rgba(2, 132, 199, 0.05);
+            border-top: 1.5px solid rgba(2, 132, 199, 0.25);
+            border-bottom: 1.5px solid rgba(2, 132, 199, 0.25);
             border-radius: var(--radius-sm);
             pointer-events: none;
             z-index: 2;
         }
 
         body.theme-dark .drum-lens {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: rgba(56, 189, 248, 0.45);
+            background: rgba(56, 189, 248, 0.08);
+            border-color: rgba(56, 189, 248, 0.35);
         }
 
         .drum-col-wrap {
@@ -408,8 +411,8 @@
             touch-action: pan-y;
             -webkit-overflow-scrolling: touch;
             z-index: 1;
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.2) 20px, black 48px, black calc(100% - 48px), rgba(0,0,0,0.2) calc(100% - 20px), transparent 100%);
-            mask-image: linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.2) 20px, black 48px, black calc(100% - 48px), rgba(0,0,0,0.2) calc(100% - 20px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.15) 20px, black 48px, black calc(100% - 48px), rgba(0,0,0,0.15) calc(100% - 20px), transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.15) 20px, black 48px, black calc(100% - 48px), rgba(0,0,0,0.15) calc(100% - 20px), transparent 100%);
         }
 
         .drum-column::-webkit-scrollbar { display: none; }
@@ -421,7 +424,7 @@
             justify-content: center;
             scroll-snap-align: center;
             font-size: var(--fs-body);
-            font-weight: 600;
+            font-weight: 500;
             color: var(--text-muted);
             cursor: pointer;
             transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
@@ -431,13 +434,13 @@
 
         .drum-item.active {
             opacity: 1;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--accent);
-            transform: scale(1.12);
+            transform: scale(1.08);
         }
 
-        body.theme-dark .drum-item { color: #94a3b8; }
-        body.theme-dark .drum-item.active { color: #38bdf8; }
+        body.theme-dark .drum-item { color: #8492a6; }
+        body.theme-dark .drum-item.active { color: #38bdf8; font-weight: 800; }
 
         .drum-step {
             position: absolute;
@@ -450,11 +453,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.65);
-            border: 1px solid rgba(148, 163, 184, 0.4);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             color: var(--text-muted);
             cursor: pointer;
-            opacity: 0.6;
+            opacity: 0.55;
             transition: all 0.15s ease;
         }
 
@@ -468,13 +471,13 @@
         }
 
         body.theme-dark .drum-step {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: #202633;
+            border-color: rgba(255, 255, 255, 0.12);
             color: #cbd5e1;
         }
 
         body.theme-dark .drum-step:hover {
-            background: #1e293b;
+            background: #2c3444;
             color: #38bdf8;
         }
 
@@ -489,35 +492,35 @@
 
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
-            height: 10px;
+            height: 8px;
             cursor: pointer;
-            background: rgba(148, 163, 184, 0.3);
-            border-radius: 5px;
+            background: rgba(148, 163, 184, 0.25);
+            border-radius: 4px;
         }
 
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 22px;
-            width: 22px;
+            height: 20px;
+            width: 20px;
             border-radius: 50%;
             background: #ffffff;
             border: 2px solid var(--accent);
             cursor: pointer;
             margin-top: -6px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
             transition: transform 0.15s ease;
         }
 
-        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
 
         .btn-glass {
             background: rgba(255, 255, 255, 0.5) !important;
             color: var(--text-primary) !important;
-            border: 1px solid rgba(148, 163, 184, 0.4) !important;
+            border: 1px solid rgba(148, 163, 184, 0.3) !important;
             backdrop-filter: var(--blur-soft) !important;
             -webkit-backdrop-filter: var(--blur-soft) !important;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 600;
             border-radius: var(--radius-sm);
             padding: 10px 16px;
             min-height: 42px;
@@ -531,82 +534,83 @@
         }
 
         .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.8) !important;
+            background: rgba(255, 255, 255, 0.75) !important;
             transform: translateY(-1px);
         }
 
         .btn-glass:active { transform: scale(0.98); }
 
         body.theme-dark .btn-glass {
-            background: rgba(30, 41, 59, 0.7) !important;
-            border-color: rgba(255, 255, 255, 0.15) !important;
+            background: #181d26 !important;
+            border-color: rgba(255, 255, 255, 0.12) !important;
             color: #f8fafc !important;
         }
 
         body.theme-dark .btn-glass:hover {
-            background: rgba(51, 65, 85, 0.9) !important;
+            background: #242b38 !important;
         }
 
         .btn-primary {
-            color: #047857 !important;
-            border-color: rgba(16, 185, 129, 0.6) !important;
-            background: rgba(16, 185, 129, 0.15) !important;
+            color: #065f46 !important;
+            border-color: rgba(16, 185, 129, 0.35) !important;
+            background: rgba(16, 185, 129, 0.1) !important;
             padding: 12px !important;
             font-size: var(--fs-h3) !important;
-            font-weight: 800 !important;
+            font-weight: 700 !important;
         }
 
         body.theme-dark .btn-primary {
-            color: #34d399 !important;
-            background: rgba(16, 185, 129, 0.22) !important;
-            border-color: rgba(52, 211, 153, 0.5) !important;
+            color: #a7f3d0 !important;
+            background: rgba(16, 185, 129, 0.18) !important;
+            border-color: rgba(16, 185, 129, 0.4) !important;
         }
 
         .btn-reset {
-            background: rgba(245, 158, 11, 0.15) !important;
-            border-color: rgba(245, 158, 11, 0.5) !important;
-            color: #b45309 !important;
+            background: rgba(217, 119, 6, 0.1) !important;
+            border-color: rgba(217, 119, 6, 0.3) !important;
+            color: #92400e !important;
         }
 
         body.theme-dark .btn-reset {
-            color: #fbbf24 !important;
-            background: rgba(245, 158, 11, 0.22) !important;
-            border-color: rgba(251, 191, 36, 0.5) !important;
+            color: #fef08a !important;
+            background: rgba(217, 119, 6, 0.18) !important;
+            border-color: rgba(245, 158, 11, 0.4) !important;
         }
 
         .btn-ref {
-            background: rgba(99, 102, 241, 0.15) !important;
-            border-color: rgba(99, 102, 241, 0.5) !important;
-            color: #4338ca !important;
+            background: rgba(99, 102, 241, 0.1) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+            color: #3730a3 !important;
         }
 
         body.theme-dark .btn-ref {
-            color: #a5b4fc !important;
-            background: rgba(99, 102, 241, 0.22) !important;
-            border-color: rgba(129, 140, 248, 0.5) !important;
+            color: #e0e7ff !important;
+            background: rgba(99, 102, 241, 0.18) !important;
+            border-color: rgba(129, 140, 248, 0.4) !important;
         }
 
         .btn-lock-toggle {
-            background: rgba(239, 68, 68, 0.12) !important;
-            border-color: rgba(239, 68, 68, 0.5) !important;
-            color: #b91c1c !important;
+            background: rgba(225, 29, 72, 0.08) !important;
+            border-color: rgba(225, 29, 72, 0.3) !important;
+            color: #9f1239 !important;
         }
 
         .btn-lock-toggle.unlocked {
-            background: rgba(2, 132, 199, 0.14) !important;
-            border-color: rgba(2, 132, 199, 0.6) !important;
-            color: #0369a1 !important;
+            background: rgba(2, 132, 199, 0.09) !important;
+            border-color: rgba(2, 132, 199, 0.35) !important;
+            color: #075985 !important;
         }
 
         body.theme-dark .btn-lock-toggle {
-            color: #fca5a5 !important;
-            background: rgba(239, 68, 68, 0.2) !important;
+            color: #fecdd3 !important;
+            background: rgba(225, 29, 72, 0.18) !important;
+            border-color: rgba(244, 63, 94, 0.35) !important;
         }
 
         body.theme-dark .btn-lock-toggle.unlocked {
-            color: #7dd3fc !important;
-            background: rgba(2, 132, 199, 0.22) !important;
-            border-color: rgba(56, 189, 248, 0.6) !important;
+            color: #bae6fd !important;
+            background: rgba(2, 132, 199, 0.18) !important;
+            border-color: rgba(56, 189, 248, 0.4) !important;
         }
 
         .icon-btn {
@@ -614,7 +618,7 @@
             height: 38px;
             border-radius: var(--radius-sm);
             background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(148, 163, 184, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -625,18 +629,18 @@
 
         .icon-btn:hover {
             background: #ffffff;
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
         body.theme-dark .icon-btn {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: #181d26;
+            border-color: rgba(255, 255, 255, 0.12);
             color: #f8fafc;
         }
 
-        body.theme-dark .icon-btn:hover { background: #1e293b; }
+        body.theme-dark .icon-btn:hover { background: #242b38; }
 
-        /* ---------------- RESULT GRID ---------------- */
+        /* ---------------- SOFT RESULT GRID ---------------- */
         .result-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
@@ -646,10 +650,10 @@
 
         .result-card {
             background: var(--card-bg, rgba(255, 255, 255, 0.65));
-            border: 2px solid var(--card-border, rgba(148, 163, 184, 0.4));
+            border: 1.5px solid var(--card-border, rgba(148, 163, 184, 0.3));
             border-radius: var(--radius-md);
             padding: 14px 16px;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
             transition: transform 0.2s ease;
         }
 
@@ -657,15 +661,15 @@
 
         .result-card .card-title {
             font-size: var(--fs-small);
-            font-weight: 800;
-            letter-spacing: 0.02em;
+            font-weight: 700;
+            letter-spacing: 0.015em;
             color: var(--card-text-title, var(--accent));
             margin-bottom: 4px;
         }
 
         .result-card .card-value {
             font-size: var(--fs-card-val);
-            font-weight: 900;
+            font-weight: 800;
             color: var(--card-text-val, var(--text-primary));
             margin-bottom: 2px;
             line-height: 1.25;
@@ -673,14 +677,14 @@
 
         .result-card .card-desc {
             font-size: var(--fs-small);
-            font-weight: 600;
+            font-weight: 500;
             color: var(--card-text-desc, var(--text-muted));
         }
 
         .thai-lunar-symbol {
             display: inline-flex;
             align-items: center;
-            font-weight: 900;
+            font-weight: 800;
             font-size: 1.15rem;
             color: currentColor;
             line-height: 1;
@@ -695,7 +699,7 @@
             line-height: 0.9;
         }
 
-        /* ---------------- SCRIPTURE DRAG / SWIPE ---------------- */
+        /* ---------------- SCRIPTURE GLIDING NAV (WITH DARK INACTIVE TABS) ---------------- */
         .gliding-nav-wrapper {
             position: sticky;
             top: 60px;
@@ -711,7 +715,7 @@
             -webkit-backdrop-filter: var(--blur-mid);
             padding: 8px;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(148, 163, 184, 0.35);
+            border: 1px solid rgba(148, 163, 184, 0.25);
             margin-bottom: 14px;
             cursor: grab;
             user-select: none;
@@ -725,27 +729,41 @@
             scroll-snap-align: start;
             padding: 8px 16px;
             font-size: var(--fs-small);
-            font-weight: 800;
+            font-weight: 700;
             border-radius: var(--radius-sm);
-            border: 2px solid transparent;
+            border: 1.5px solid transparent;
             cursor: pointer;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.65);
             color: var(--text-muted);
             transition: all 0.2s ease;
             white-space: nowrap;
         }
 
-        .gliding-btn[data-cat="earth"].active { background: #3d2214 !important; color: #fde68a !important; border-color: #b45309 !important; }
-        .gliding-btn[data-cat="water"].active { background: #075985 !important; color: #bae6fd !important; border-color: #38bdf8 !important; }
-        .gliding-btn[data-cat="wind"].active { background: #854d0e !important; color: #fef9c3 !important; border-color: #facc15 !important; }
-        .gliding-btn[data-cat="fire"].active { background: #991b1b !important; color: #fee2e2 !important; border-color: #ef4444 !important; }
-        .gliding-btn[data-cat="country"].active { background: #581c87 !important; color: #f3e8ff !important; border-color: #c084fc !important; }
+        /* LIGHT MODE ACTIVE TABS */
+        .gliding-btn[data-cat="earth"].active { background: #fbf8f5 !important; color: #4a2c17 !important; border-color: #d6c5b3 !important; }
+        .gliding-btn[data-cat="water"].active { background: #f0f9ff !important; color: #0369a1 !important; border-color: #7dd3fc !important; }
+        .gliding-btn[data-cat="wind"].active { background: #fefce8 !important; color: #b45309 !important; border-color: #fde047 !important; }
+        .gliding-btn[data-cat="fire"].active { background: #fff1f2 !important; color: #be123c !important; border-color: #fda4af !important; }
+        .gliding-btn[data-cat="country"].active { background: #faf5ff !important; color: #7e22ce !important; border-color: #d8b4fe !important; }
 
-        body.theme-dark .gliding-btn[data-cat="earth"].active { background: rgba(217, 119, 6, 0.25) !important; color: #fde68a !important; border-color: #d97706 !important; }
-        body.theme-dark .gliding-btn[data-cat="water"].active { background: rgba(56, 189, 248, 0.25) !important; color: #bae6fd !important; border-color: #38bdf8 !important; }
-        body.theme-dark .gliding-btn[data-cat="wind"].active { background: rgba(234, 179, 8, 0.25) !important; color: #fef08a !important; border-color: #facc15 !important; }
-        body.theme-dark .gliding-btn[data-cat="fire"].active { background: rgba(239, 68, 68, 0.25) !important; color: #fca5a5 !important; border-color: #f87171 !important; }
-        body.theme-dark .gliding-btn[data-cat="country"].active { background: rgba(168, 85, 247, 0.25) !important; color: #e9d5ff !important; border-color: #a855f7 !important; }
+        /* DARK MODE: INACTIVE TABS ARE DARK, NOT LIGHT-GRAY */
+        body.theme-dark .gliding-btn:not(.active) {
+            background: #181d26 !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+            color: #94a3b8 !important;
+        }
+
+        body.theme-dark .gliding-btn:not(.active):hover {
+            background: #242b38 !important;
+            color: #f1f5f9 !important;
+        }
+
+        /* DARK MODE ACTIVE TABS: VAYO HAS DISTINCT GLOWING AMBER */
+        body.theme-dark .gliding-btn[data-cat="earth"].active { background: #1c1510 !important; color: #fdf6e2 !important; border-color: #573a25 !important; }
+        body.theme-dark .gliding-btn[data-cat="water"].active { background: #0c2d44 !important; color: #bae6fd !important; border-color: #38bdf8 !important; }
+        body.theme-dark .gliding-btn[data-cat="wind"].active { background: #2e2406 !important; color: #fef08a !important; border-color: #eab308 !important; }
+        body.theme-dark .gliding-btn[data-cat="fire"].active { background: #381216 !important; color: #fecdd3 !important; border-color: #f43f5e !important; }
+        body.theme-dark .gliding-btn[data-cat="country"].active { background: #291238 !important; color: #e9d5ff !important; border-color: #a855f7 !important; }
 
         #refContent {
             touch-action: pan-y;
@@ -759,21 +777,21 @@
         }
 
         .scripture-item-card {
-            background: var(--scrip-bg, #26160c);
-            border: 2px solid var(--scrip-border, #b45309);
-            color: var(--scrip-text, #fef3c7);
+            background: var(--scrip-bg, #fbf8f5);
+            border: 1.5px solid var(--scrip-border, #d6c5b3);
+            color: var(--scrip-text, #4a2c17);
             border-radius: var(--radius-md);
             padding: 12px 14px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
             transition: transform 0.15s ease;
         }
 
         .scripture-item-card .item-header {
             font-size: var(--fs-body);
-            font-weight: 800;
-            color: var(--scrip-header, #fef3c7);
+            font-weight: 700;
+            color: var(--scrip-header, #4a2c17);
             margin-bottom: 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             padding-bottom: 4px;
         }
 
@@ -791,16 +809,19 @@
 
         .scripture-row .row-label {
             flex: 0 0 68px;
-            font-weight: 800;
-            color: var(--scrip-label, #fde047);
+            font-weight: 700;
+            color: var(--scrip-label, #854d0e);
         }
 
         .scripture-row .row-val {
             flex: 1;
-            color: var(--scrip-text, #f8fafc);
+            color: var(--scrip-text, #334155);
         }
 
-        /* ---------------- SKELETON ULTRA-FAST RUNNER (0.1s RIGHT TO LEFT) ---------------- */
+        body.theme-dark .scripture-row .row-val {
+            color: #f1f5f9;
+        }
+
         .goofy-runner-img {
             position: fixed;
             bottom: 20vh;
@@ -813,83 +834,54 @@
             transition: transform 0.1s linear;
         }
 
-        /* ---------------- SPECIAL THEMES (WITH HEADER SYNCHRONIZATION) ---------------- */
+        /* Extreme & Special Modes */
         body.theme-extreme-night {
             background-color: #000000 !important;
-            color: #00ff66 !important;
+            color: #00cc52 !important;
         }
 
         body.theme-extreme-night .app-header {
-            background: rgba(0, 15, 5, 0.95) !important;
-            border-bottom: 1.5px solid #00ff66 !important;
-        }
-
-        body.theme-extreme-night .brand-title,
-        body.theme-extreme-night .framed-label-badge,
-        body.theme-extreme-night .today-mini-box {
-            color: #00ff66 !important;
-            border-color: #00ff66 !important;
+            background: rgba(0, 10, 3, 0.95) !important;
+            border-bottom: 1px solid #00aa44 !important;
         }
 
         body.theme-extreme-night .container,
         body.theme-extreme-night .result-card,
         body.theme-extreme-night .glass-picker-card,
         body.theme-extreme-night .scripture-item-card {
-            background: rgba(0, 20, 5, 0.95) !important;
-            border-color: #00ff66 !important;
-            color: #00ff66 !important;
+            background: rgba(0, 14, 4, 0.95) !important;
+            border-color: #00aa44 !important;
+            color: #00cc52 !important;
         }
 
         body.theme-eternal-metal {
-            background-color: #050000 !important;
-            color: #ff2222 !important;
+            background-color: #030000 !important;
+            color: #e04545 !important;
         }
 
         body.theme-eternal-metal .app-header {
-            background: rgba(25, 0, 0, 0.95) !important;
-            border-bottom: 2px solid #ff0000 !important;
-            font-family: 'Impact', sans-serif !important;
+            background: rgba(18, 0, 0, 0.95) !important;
+            border-bottom: 1.5px solid #a81c1c !important;
         }
 
-        body.theme-eternal-metal .brand-title,
-        body.theme-eternal-metal .framed-label-badge,
-        body.theme-eternal-metal .today-mini-box {
-            color: #ff2222 !important;
-            border-color: #ff0000 !important;
-        }
-
-        body.theme-eternal-metal .container,
-        body.theme-eternal-metal .result-card,
-        body.theme-eternal-metal .glass-picker-card,
-        body.theme-eternal-metal .scripture-item-card {
-            background: rgba(25, 0, 0, 0.95) !important;
-            border-color: #ff0000 !important;
-            color: #ff3333 !important;
-        }
-
-        body.theme-goofy { animation: bgParty 4s infinite alternate; }
-
-        body.theme-goofy .app-header {
-            border-bottom: 2px dashed #f59e0b !important;
-        }
+        body.theme-goofy { animation: bgParty 5s infinite alternate; }
 
         body.eyecare-filter::before {
             content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background-color: rgba(255, 115, 0, 0.35);
+            background-color: rgba(245, 158, 11, 0.12);
             pointer-events: none;
             z-index: 999999;
             mix-blend-mode: multiply;
         }
 
-        /* Modal */
         .glass-modal-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(2, 6, 23, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: var(--blur-mid);
             -webkit-backdrop-filter: var(--blur-mid);
             z-index: 9999;
@@ -901,12 +893,17 @@
 
         .glass-modal-card {
             background: var(--card-bg-base);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: var(--radius-md);
             padding: 20px;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+        }
+
+        body.theme-dark .glass-modal-card {
+            background: #181d26;
+            border-color: rgba(255, 255, 255, 0.12);
         }
 
         .modal-year-grid {
@@ -920,11 +917,11 @@
 
         .year-choice-btn {
             background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(148, 163, 184, 0.4);
+            border: 1px solid rgba(148, 163, 184, 0.3);
             border-radius: 6px;
             padding: 8px;
             text-align: center;
-            font-weight: 700;
+            font-weight: 600;
             font-size: var(--fs-small);
             cursor: pointer;
             transition: all 0.15s ease;
@@ -986,7 +983,7 @@
                 <img src="วงกลาง.png" id="middle-wheel" class="wheel" alt="วงกลาง" decoding="async" fetchpriority="high">
                 <img src="วงบน.png" id="top-wheel" class="wheel" alt="วงบน" decoding="async" fetchpriority="high">
             </div>
-            <div id="loadingArea" style="display:none; text-align:center; font-weight:800; color: var(--accent); padding: 12px;">
+            <div id="loadingArea" style="display:none; text-align:center; font-weight:700; color: var(--accent); padding: 12px;">
                 กำลังหมุนประมวลผล...
             </div>
         </div>
@@ -1026,27 +1023,27 @@
                     </button>
                 </div>
                 <div style="margin-bottom: 8px;">
-                    <label for="bot-slider" id="lblBotSlider" style="font-size:var(--fs-small); font-weight:700;">องศาวงล่าง (วันเกิด):</label>
+                    <label for="bot-slider" id="lblBotSlider" style="font-size:var(--fs-small); font-weight:600;">องศาวงล่าง (วันเกิด):</label>
                     <input type="range" id="bot-slider" min="0" max="360" step="0.98630137" value="0">
                 </div>
                 <div style="margin-bottom: 8px;">
-                    <label for="mid-slider" id="lblMidSlider" style="font-size:var(--fs-small); font-weight:700;">องศาวงกลาง (ธาตุ/ปีเกิด):</label>
+                    <label for="mid-slider" id="lblMidSlider" style="font-size:var(--fs-small); font-weight:600;">องศาวงกลาง (ธาตุ/ปีเกิด):</label>
                     <input type="range" id="mid-slider" min="0" max="360" step="0.98630137" value="0">
                 </div>
 
                 <div class="result-card" style="margin-bottom: 10px; padding: 10px 12px;">
-                    <div id="lblAdvCardTitle" style="font-size:var(--fs-small); font-weight:800; color:var(--accent); margin-bottom:4px;">🎯 ตรวจจับพิกัดวันที่ (โหมดหมุนเอง)</div>
+                    <div id="lblAdvCardTitle" style="font-size:var(--fs-small); font-weight:700; color:var(--accent); margin-bottom:4px;">🎯 ตรวจจับพิกัดวันที่ (โหมดหมุนเอง)</div>
                     <div style="font-size:var(--fs-small); line-height:1.5;">
-                        <div><span id="lblAdvBirth">• วันเกิด:</span> <span id="advBirthDetect" style="color:var(--accent); font-weight:800;">-</span></div>
-                        <div><span id="lblAdvConcept">• วันปฏิสนธิ:</span> <span id="advConceptDetect" style="color:#e11d48; font-weight:800;">-</span></div>
-                        <div><span id="lblAdvRef">• วันอ้างอิงปีเกิด:</span> <span id="advRefDetect" style="color:#d97706; font-weight:800;">-</span></div>
+                        <div><span id="lblAdvBirth">• วันเกิด:</span> <span id="advBirthDetect" style="color:var(--accent); font-weight:700;">-</span></div>
+                        <div><span id="lblAdvConcept">• วันปฏิสนธิ:</span> <span id="advConceptDetect" style="color:#e11d48; font-weight:700;">-</span></div>
+                        <div><span id="lblAdvRef">• วันอ้างอิงปีเกิด:</span> <span id="advRefDetect" style="color:#d97706; font-weight:700;">-</span></div>
                     </div>
                 </div>
 
                 <button type="button" class="btn-glass" id="btnYearTableToggle" onclick="toggleYearTable()" style="font-size:var(--fs-small); padding:6px; margin-bottom:8px;">แสดง/ซ่อน ตารางอ้างอิงปีเกิด</button>
                 <div id="yearTableContainer" style="display: none; max-height: 140px; overflow: auto; margin-bottom: 10px;">
                     <table style="width:100%; border-collapse: collapse; font-size:var(--fs-small);">
-                        <thead><tr style="border-bottom: 1px solid rgba(148,163,184,0.4);"><th id="thYear1">ปี พ.ศ.</th><th id="thRef1">วันอ้างอิง</th><th id="thYear2">ปี พ.ศ.</th><th id="thRef2">วันอ้างอิง</th></tr></thead>
+                        <thead><tr style="border-bottom: 1px solid rgba(148,163,184,0.3);"><th id="thYear1">ปี พ.ศ.</th><th id="thRef1">วันอ้างอิง</th><th id="thYear2">ปี พ.ศ.</th><th id="thRef2">วันอ้างอิง</th></tr></thead>
                         <tbody id="yearTableBody"></tbody>
                     </table>
                 </div>
@@ -1076,7 +1073,7 @@
             </div>
 
             <button type="button" class="btn-glass btn-primary" id="btnStartCalc" onclick="startCalculation()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                 <span id="txtBtnStartCalc">วิเคราะห์สมุฏฐานวินิจฉัย</span>
             </button>
         </div>
@@ -1161,17 +1158,17 @@
 
         <div style="margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap;">
             <button type="button" class="btn-glass btn-reset" style="flex:1;" onclick="resetForm()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
                 <span id="txtBtnReset">วิเคราะห์ใหม่</span>
             </button>
             <button type="button" class="btn-glass btn-ref" style="flex:1;" onclick="toggleOptionalInfo()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 <span id="txtBtnRef">คัมภีร์เพิ่มเติม</span>
             </button>
         </div>
     </div>
 
-    <!-- SCRIPTURE SECTION WITH SMOOTH SWIPING -->
+    <!-- SCRIPTURE SECTION -->
     <div id="optionalInfoArea" style="display: none; margin-top: 18px;">
         <h3 id="txtScriptureHeading" style="font-size: var(--fs-h2); margin-bottom: 8px;">ข้อมูลคัมภีร์ธาตุ</h3>
         
@@ -1208,10 +1205,10 @@
     let isGoofball = false;
 
     function getRandomSpinDuration() {
-        return Math.round((1400 + Math.random() * (2800 - 1400)));
+        return Math.round((1400 + Math.random() * (2600 - 1400)));
     }
 
-    /* ---------------- GLOBAL KEYBOARD TYPING & CHEAT DETECTION ---------------- */
+    /* ---------------- KEYBOARD TYPING & SHORTCUTS ---------------- */
     let keyBuffer = "";
     let dateTypeBuffer = "";
     let dateTypeTimer = null;
@@ -1220,7 +1217,6 @@
     document.addEventListener('keydown', (e) => {
         if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
 
-        // Letter buffer for cheat codes
         const keyMatch = e.code.match(/^Key([A-Z])$/);
         if (keyMatch) {
             const char = keyMatch[1].toLowerCase();
@@ -1237,13 +1233,11 @@
             return;
         }
 
-        // Numbers for direct date typing
         if (e.key >= '0' && e.key <= '9') {
             dateTypeBuffer += e.key;
             clearTimeout(dateTypeTimer);
 
             if (isDiagLocked) {
-                // BIRTH DATE MODE (8 digits: DDMMYYYY)
                 showFormattedDateToast(dateTypeBuffer, 8, "วันเกิด");
                 if (dateTypeBuffer.length === 8) {
                     parseAndApplyBirthDate(dateTypeBuffer);
@@ -1252,7 +1246,6 @@
                     dateTypeTimer = setTimeout(() => { dateTypeBuffer = ""; hideToast(); }, 2500);
                 }
             } else {
-                // DIAGNOSTIC DATE & TIME MODE (10 digits: DDMMYYHHMM or 12 digits: DDMMYYYYHHMM)
                 showFormattedDateToast(dateTypeBuffer, 10, "วันเวลาตรวจ");
                 if (dateTypeBuffer.length === 10 || dateTypeBuffer.length === 12) {
                     parseAndApplyDiagDateTime(dateTypeBuffer);
@@ -1362,7 +1355,6 @@
         hideToast();
     }
 
-    /* ---------------- SPECIAL MODES & MEDIA MANAGER ---------------- */
     function toggleSpecialMode(modeName) {
         const body = document.body;
         if (currentSpecialMode === modeName) modeName = 'normal';
@@ -1395,33 +1387,24 @@
         }
     }
 
-    /* Metal Audio Engine */
     function startMetalBGM() {
         const audio = document.getElementById('metalBgm');
-        if (audio) {
-            audio.currentTime = 0;
-            audio.play().catch(e => console.log('Audio playback prevented', e));
-        }
+        if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log(e)); }
     }
     function stopMetalBGM() {
         const audio = document.getElementById('metalBgm');
         if (audio) { audio.pause(); audio.currentTime = 0; }
     }
 
-    /* Goofy Audio Engine */
     function startGoofyBGM() {
         const audio = document.getElementById('goofyBgm');
-        if (audio) {
-            audio.currentTime = 0;
-            audio.play().catch(e => console.log('Audio playback prevented', e));
-        }
+        if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log(e)); }
     }
     function stopGoofyBGM() {
         const audio = document.getElementById('goofyBgm');
         if (audio) { audio.pause(); audio.currentTime = 0; }
     }
 
-    /* Skeleton.gif Fast Slide: 0.1s Right to Left */
     let goofyTimer = null;
     function startGoofyRunner() {
         stopGoofyRunner();
@@ -1443,14 +1426,13 @@
         document.body.appendChild(img);
 
         requestAnimationFrame(() => {
-            // Ultra-fast slide: across screen in 0.1s
             img.style.transform = `translateX(-${window.innerWidth + 400}px)`;
         });
 
         setTimeout(() => img.remove(), 250);
     }
 
-    /* ---------------- SOOTHING CALM SFX ENGINE ---------------- */
+    /* ---------------- CALM SOOTHING AUDIO ---------------- */
     const SFX = {
         ctx: null, enabled: true,
         init() {
@@ -1460,7 +1442,7 @@
             }
             if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
         },
-        soothingChime(freq = 528, duration = 0.45, gainLevel = 0.028) {
+        soothingChime(freq = 528, duration = 0.45, gainLevel = 0.02) {
             if (!this.enabled || isEternalMetal) return;
             this.init();
             if (!this.ctx) return;
@@ -1488,12 +1470,12 @@
             const gain = this.ctx.createGain();
             
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(260, now);
-            osc.frequency.exponentialRampToValueAtTime(440, now + duration * 0.5);
-            osc.frequency.exponentialRampToValueAtTime(330, now + duration);
+            osc.frequency.setValueAtTime(240, now);
+            osc.frequency.exponentialRampToValueAtTime(400, now + duration * 0.5);
+            osc.frequency.exponentialRampToValueAtTime(300, now + duration);
             
             gain.gain.setValueAtTime(0.0001, now);
-            gain.gain.linearRampToValueAtTime(0.02, now + 0.1);
+            gain.gain.linearRampToValueAtTime(0.015, now + 0.1);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
             
             osc.connect(gain);
@@ -1510,15 +1492,15 @@
             const gain = this.ctx.createGain();
             
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(880, now);
+            osc.frequency.setValueAtTime(800, now);
             gain.gain.setValueAtTime(0.0001, now);
-            gain.gain.linearRampToValueAtTime(0.012, now + 0.004);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+            gain.gain.linearRampToValueAtTime(0.008, now + 0.004);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
             
             osc.connect(gain);
             gain.connect(this.ctx.destination);
             osc.start(now);
-            osc.stop(now + 0.035);
+            osc.stop(now + 0.03);
         },
         softSlide() {
             if (!this.enabled || isEternalMetal) return;
@@ -1529,8 +1511,8 @@
             const gain = this.ctx.createGain();
             
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(480, now);
-            gain.gain.setValueAtTime(0.008, now);
+            osc.frequency.setValueAtTime(440, now);
+            gain.gain.setValueAtTime(0.006, now);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
             
             osc.connect(gain);
@@ -1538,9 +1520,9 @@
             osc.start(now);
             osc.stop(now + 0.03);
         },
-        click() { this.soothingChime(660, 0.25, 0.025); },
-        toggle() { this.soothingChime(784, 0.35, 0.03); },
-        tab() { this.soothingChime(587.33, 0.25, 0.025); }
+        click() { this.soothingChime(660, 0.25, 0.02); },
+        toggle() { this.soothingChime(750, 0.3, 0.025); },
+        tab() { this.soothingChime(560, 0.22, 0.02); }
     };
 
     document.addEventListener('click', () => SFX.init(), { once: true });
@@ -1551,7 +1533,7 @@
     const themes = [
         { name: "light", title: "โหมดสว่าง" },
         { name: "light-eyecare", title: "โหมดถนอมสายตา (สว่าง)" },
-        { name: "dark", title: "โหมดมืด (Dark Space)" },
+        { name: "dark", title: "โหมดมืด (Soft Deep Charcoal)" },
         { name: "dark-eyecare", title: "โหมดถนอมสายตา (มืด)" }
     ];
 
@@ -1628,6 +1610,10 @@
             syncDiagToNow();
             refreshDiagPickers();
             pickers.style.display = 'block';
+
+            setTimeout(() => {
+                pickers.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 60);
         }
     }
 
@@ -1903,7 +1889,7 @@
         }
     }
 
-    /* ---------------- DRUM PICKER ENGINE ---------------- */
+    /* ---------------- INFINITE CYCLIC (360 DEGREES) DRUM PICKER ENGINE ---------------- */
     const DRUM_ITEM_HEIGHT = 42;
 
     function ensureDrumStepper(container) {
@@ -1949,7 +1935,7 @@
         return wrap;
     }
 
-    function buildDrumColumn(containerId, items, currentVal, onSelect) {
+    function buildDrumColumn(containerId, items, currentVal, onSelect, isCyclic = false) {
         const container = document.getElementById(containerId);
         if (!container) return;
 
@@ -1957,21 +1943,28 @@
         container.innerHTML = "";
 
         const itemHeight = DRUM_ITEM_HEIGHT;
+        const count = items.length;
+        const repeatSets = isCyclic ? 5 : 1;
+        const middleSet = isCyclic ? 2 : 0;
 
-        items.forEach(item => {
-            const div = document.createElement('div');
-            div.className = `drum-item ${item.value == currentVal ? 'active' : ''}`;
-            div.innerText = item.label;
-            div.dataset.val = item.value;
-            div.onclick = () => {
-                const index = items.findIndex(i => i.value == item.value);
-                container.scrollTo({ top: index * itemHeight, behavior: 'smooth' });
-            };
-            container.appendChild(div);
-        });
+        for (let r = 0; r < repeatSets; r++) {
+            items.forEach((item, originalIdx) => {
+                const div = document.createElement('div');
+                div.className = `drum-item ${item.value == currentVal ? 'active' : ''}`;
+                div.innerText = item.label;
+                div.dataset.val = item.value;
+                div.dataset.origIdx = originalIdx;
+                div.onclick = () => {
+                    const targetIdx = (r * count) + originalIdx;
+                    container.scrollTo({ top: targetIdx * itemHeight, behavior: 'smooth' });
+                };
+                container.appendChild(div);
+            });
+        }
 
-        const initialIdx = items.findIndex(i => i.value == currentVal);
-        if (initialIdx >= 0) container.scrollTop = initialIdx * itemHeight;
+        const initialBaseIdx = Math.max(0, items.findIndex(i => i.value == currentVal));
+        const initialScrollIdx = (middleSet * count) + initialBaseIdx;
+        container.scrollTop = initialScrollIdx * itemHeight;
 
         container.onwheel = (e) => {
             e.preventDefault();
@@ -1980,25 +1973,37 @@
         };
 
         let scrollTimer = null;
-        let lastIdx = initialIdx;
+        let lastIdx = initialBaseIdx;
 
         container.onscroll = () => {
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(() => {
-                const idx = Math.round(container.scrollTop / itemHeight);
-                const activeItem = items[idx] || items[items.length - 1] || items[0];
-                
-                if (idx !== lastIdx) {
-                    SFX.softTick();
-                    lastIdx = idx;
+                let currentIdx = Math.round(container.scrollTop / itemHeight);
+                const modIdx = ((currentIdx % count) + count) % count;
+                const activeItem = items[modIdx];
+
+                if (isCyclic) {
+                    if (currentIdx < count) {
+                        currentIdx += count * 2;
+                        container.scrollTop = currentIdx * itemHeight;
+                    } else if (currentIdx >= count * 4) {
+                        currentIdx -= count * 2;
+                        container.scrollTop = currentIdx * itemHeight;
+                    }
                 }
 
-                Array.from(container.children).forEach((child, i) => {
-                    child.classList.toggle('active', i === idx);
+                if (modIdx !== lastIdx) {
+                    SFX.softTick();
+                    lastIdx = modIdx;
+                }
+
+                Array.from(container.children).forEach((child) => {
+                    const isMatch = parseInt(child.dataset.origIdx) === modIdx;
+                    child.classList.toggle('active', isMatch);
                 });
 
                 if (activeItem) onSelect(activeItem.value);
-            }, 60);
+            }, 50);
         };
     }
 
@@ -2045,7 +2050,7 @@
             let yr1 = parseInt(years[i]);
             let yr2 = years[i+1] ? parseInt(years[i+1]) : null;
 
-            html += `<tr style="border-bottom: 1px solid rgba(148,163,184,0.2);">`;
+            html += `<tr style="border-bottom: 1px solid rgba(148,163,184,0.15);">`;
             html += `<td style="padding:4px 6px;">${formatYearDisplay(yr1, currentLang)}</td><td style="padding:4px 6px;">${yearRefDict[years[i]]}</td>`;
             if (yr2) { html += `<td style="padding:4px 6px;">${formatYearDisplay(yr2, currentLang)}</td><td style="padding:4px 6px;">${yearRefDict[years[i+1]]}</td>`; } 
             else { html += `<td></td><td></td>`; }
@@ -2066,7 +2071,7 @@
         buildDrumColumn('drumBDay', days, selectedState.bDay, (v) => { 
             selectedState.bDay = v; 
             handleWheelAutoSync(); 
-        });
+        }, true);
     }
 
     function updateDiagDayColumn() {
@@ -2085,7 +2090,7 @@
         buildDrumColumn('drumDiagDay', days, selectedState.diagDay, (v) => { 
             selectedState.diagDay = v; 
             validateDiagDateTime();
-        });
+        }, true);
     }
 
     function validateDiagDateTime() {
@@ -2144,22 +2149,22 @@
             updateDiagDayColumn(); 
             validateDiagDateTime();
             refreshDiagPickers();
-        });
+        }, true);
         buildDrumColumn('drumDiagYear', diagYears, selectedState.diagYear, (v) => { 
             selectedState.diagYear = v; 
             updateDiagDayColumn(); 
             validateDiagDateTime();
             refreshDiagPickers();
-        });
+        }, false);
         buildDrumColumn('drumDiagHour', hours, selectedState.diagHour, (v) => { 
             selectedState.diagHour = v; 
             validateDiagDateTime();
             refreshDiagPickers();
-        });
+        }, true);
         buildDrumColumn('drumDiagMin', mins, selectedState.diagMin, (v) => { 
             selectedState.diagMin = v; 
             validateDiagDateTime();
-        });
+        }, true);
     }
 
     function initAllDrumPickers() {
@@ -2181,12 +2186,12 @@
             selectedState.bMonth = v; 
             updateBDayColumn(); 
             handleWheelAutoSync(); 
-        });
+        }, true);
         buildDrumColumn('drumBYear', years, selectedState.bYear, (v) => { 
             selectedState.bYear = v; 
             updateBDayColumn(); 
             handleWheelAutoSync(); 
-        });
+        }, false);
 
         refreshDiagPickers();
     }
@@ -2369,7 +2374,7 @@
         const subMap = {
             th: {
                 fire: [{ t: "พัทธปิตตะ (ดีในฝัก)" }, { t: "อพัทธปิตตะ (ดีนอกฝัก)" }, { t: "กำเดา (เปลวความร้อน)" }],
-                wind: [{ t: "หทัยวาตะ (ลมที่หัวใจ)" }, { t: "สัตถกวาตะ (ลมตัดลำไส้)" }, { t: "สุมนาวาตะ (ลมในเส้น)" }],
+                wind: [{ t: "หทัยวาตะ (ลมที่หัวใจ)" }, { t: "สัตถกวาตะ (ลมเสียดแทง)" }, { t: "สุมนาวาตะ (ลมในเส้น)" }],
                 water: [{ t: "ศอเสมหะ (เสมหะลำคอ)" }, { t: "อุระเสมหะ (เสมหะทรวงอก)" }, { t: "คูถเสมหะ (เสมหะทวารหนัก)" }]
             },
             en: {
@@ -2443,72 +2448,157 @@
         return numStr.toString().split('').map(char => thaiNumerals[parseInt(char)] || char).join('');
     }
 
-    /* ---------------- BALANCED & COMFORTABLE ELEMENT COLOR ENGINE ---------------- */
-    function getElementStyle(elementText) {
+    /* ---------------- BALANCED, LOW-CONTRAST & EYE-FRIENDLY COLOR ENGINE ---------------- */
+    function getSeasonColorStyle(seasonText) {
         const isDark = document.body.classList.contains('theme-dark') || isExtremeNight || isEternalMetal;
-        
-        if (isExtremeNight) return { 
-            title: "#00ff66", val: "#00ff66", desc: "#00cc52",
-            bg: "rgba(0, 20, 5, 0.95)", border: "#00ff66" 
-        };
-        if (isEternalMetal) return { 
-            title: "#ff4d4d", val: "#ff1a1a", desc: "#ff6666",
-            bg: "rgba(35, 0, 0, 0.95)", border: "#ff0000" 
-        };
 
-        // FIRE (เตโช / ปิตตะ / คิมหันต์ / แดงสด)
-        if (elementText.includes("เตโช") || elementText.includes("คิมหันต์") || elementText.includes("ปิตตะ") || elementText.includes("Fire") || elementText.includes("火") || elementText.includes("เมษ") || elementText.includes("สิงห์") || elementText.includes("ธนู")) {
+        // ฤดูร้อน (Summer) = RED / TERRACOTTA
+        if (seasonText.includes("คิมหันต") || seasonText.includes("ร้อน") || seasonText.includes("Summer") || seasonText.includes("夏")) {
             return {
-                title: isDark ? "#fca5a5" : "#fecaca",
-                val: isDark ? "#ffffff" : "#ffffff",
-                desc: isDark ? "#f87171" : "#fee2e2",
-                bg: isDark ? "rgba(239, 68, 68, 0.22)" : "#7f1d1d",
-                border: isDark ? "#f87171" : "#ef4444"
+                title: isDark ? "#fca5a5" : "#be123c",
+                val: isDark ? "#ffffff" : "#4c0519",
+                desc: isDark ? "#f87171" : "#881337",
+                bg: isDark ? "rgba(90, 20, 30, 0.35)" : "#fff1f2",
+                border: isDark ? "#9f1239" : "#fda4af"
             };
-        } 
-        // WIND (วาโย / วาตะ / วสันต์ / เหลืองใส)
-        else if (elementText.includes("วาโย") || elementText.includes("วสันต์") || elementText.includes("วาตะ") || elementText.includes("Wind") || elementText.includes("风") || elementText.includes("เมถุน") || elementText.includes("ตุลย์") || elementText.includes("กุมภ์")) {
+        }
+        // ฤดูฝน (Rainy) = YELLOW / OCHRE / AMBER
+        else if (seasonText.includes("วสันต") || seasonText.includes("ฝน") || seasonText.includes("Rainy") || seasonText.includes("雨")) {
             return {
-                title: isDark ? "#fde047" : "#fef08a",
-                val: isDark ? "#ffffff" : "#ffffff",
-                desc: isDark ? "#fef9c3" : "#fef9c3",
-                bg: isDark ? "rgba(234, 179, 8, 0.22)" : "#713f12",
-                border: isDark ? "#facc15" : "#eab308"
+                title: isDark ? "#fde047" : "#b45309",
+                val: isDark ? "#ffffff" : "#451a03",
+                desc: isDark ? "#facc15" : "#78350f",
+                bg: isDark ? "rgba(80, 50, 10, 0.35)" : "#fefce8",
+                border: isDark ? "#854d0e" : "#fde047"
             };
-        } 
-        // WATER (อาโป / เสมหะ / เหมันต์ / ฟ้าอ่อน)
-        else if (elementText.includes("อาโป") || elementText.includes("เหมันต์") || elementText.includes("เสมหะ") || elementText.includes("Water") || elementText.includes("水") || elementText.includes("กรกฎ") || elementText.includes("พิจิก") || elementText.includes("มีน")) {
-            return {
-                title: isDark ? "#7dd3fc" : "#bae6fd",
-                val: isDark ? "#ffffff" : "#ffffff",
-                desc: isDark ? "#38bdf8" : "#e0f2fe",
-                bg: isDark ? "rgba(56, 189, 248, 0.22)" : "#0c4a6e",
-                border: isDark ? "#38bdf8" : "#0284c7"
-            };
-        } 
-        // EARTH (ปถวี / น้ำตาลเข้ม)
+        }
+        // ฤดูหนาว (Winter) = BLUE / SLATE CYAN
         else {
             return {
-                title: isDark ? "#fde68a" : "#fef3c7",
-                val: isDark ? "#ffffff" : "#ffffff",
-                desc: isDark ? "#fef3c7" : "#e7e5e4",
-                bg: isDark ? "rgba(217, 119, 6, 0.22)" : "#271711",
-                border: isDark ? "#d97706" : "#a16207"
+                title: isDark ? "#7dd3fc" : "#0369a1",
+                val: isDark ? "#ffffff" : "#082f49",
+                desc: isDark ? "#38bdf8" : "#075985",
+                bg: isDark ? "rgba(12, 45, 68, 0.35)" : "#f0f9ff",
+                border: isDark ? "#0284c7" : "#7dd3fc"
             };
         }
     }
 
-    /* Thai Day-of-week colors */
+    function getElementStyle(elementText) {
+        const isDark = document.body.classList.contains('theme-dark') || isExtremeNight || isEternalMetal;
+        
+        if (isExtremeNight) return { 
+            title: "#00cc52", val: "#00ee5e", desc: "#00993d",
+            bg: "rgba(0, 15, 5, 0.95)", border: "#00aa44" 
+        };
+        if (isEternalMetal) return { 
+            title: "#e04545", val: "#ff5252", desc: "#ad2626",
+            bg: "rgba(25, 0, 0, 0.95)", border: "#8c1515" 
+        };
+
+        // FIRE (เตโช / ปิตตะ)
+        if (elementText.includes("เตโช") || elementText.includes("ปิตตะ") || elementText.includes("Fire") || elementText.includes("火") || elementText.includes("เมษ") || elementText.includes("สิงห์") || elementText.includes("ธนู")) {
+            return {
+                title: isDark ? "#fca5a5" : "#be123c",
+                val: isDark ? "#ffffff" : "#881337",
+                desc: isDark ? "#f87171" : "#9f1239",
+                bg: isDark ? "rgba(90, 20, 30, 0.35)" : "#fff1f2",
+                border: isDark ? "#9f1239" : "#fda4af"
+            };
+        } 
+        // WIND (วาโย / วาตะ) - ชัดเจน แยกจากน้ำตาลเข้มด้วยสีเหลืองทองอำพัน
+        else if (elementText.includes("วาโย") || elementText.includes("วาตะ") || elementText.includes("Wind") || elementText.includes("风") || elementText.includes("เมถุน") || elementText.includes("ตุลย์") || elementText.includes("กุมภ์")) {
+            return {
+                title: isDark ? "#fef08a" : "#b45309",
+                val: isDark ? "#ffffff" : "#78350f",
+                desc: isDark ? "#facc15" : "#92400e",
+                bg: isDark ? "rgba(80, 50, 10, 0.35)" : "#fefce8",
+                border: isDark ? "#eab308" : "#fde047"
+            };
+        } 
+        // WATER (อาโป / เสมหะ)
+        else if (elementText.includes("อาโป") || elementText.includes("เสมหะ") || elementText.includes("Water") || elementText.includes("水") || elementText.includes("กรกฎ") || elementText.includes("พิจิก") || elementText.includes("มีน")) {
+            return {
+                title: isDark ? "#7dd3fc" : "#0369a1",
+                val: isDark ? "#ffffff" : "#0c4a6e",
+                desc: isDark ? "#38bdf8" : "#075985",
+                bg: isDark ? "rgba(12, 45, 68, 0.35)" : "#f0f9ff",
+                border: isDark ? "#0284c7" : "#7dd3fc"
+            };
+        } 
+        // EARTH (ปถวี / ธาตุดิน)
+        // โหมดสว่าง: สีน้ำตาลอ่อนนุ่มตา (Soft warm beige-brown)
+        // โหมดมืด: สีน้ำตาลช็อกโกแลตเข้ม ตัวหนังสือสว่างเกือบขาว
+        else {
+            return {
+                title: isDark ? "#fde68a" : "#785133",
+                val: isDark ? "#ffffff" : "#432818",
+                desc: isDark ? "#fef3c7" : "#634832",
+                bg: isDark ? "#1c1510" : "#fbf8f5",
+                border: isDark ? "#573a25" : "#d6c5b3"
+            };
+        }
+    }
+
+    /* Random Aesthetic Palette Generator for Conception Card */
+    function getRandomConceptionStyle() {
+        const isDark = document.body.classList.contains('theme-dark');
+        const palettes = [
+            // Soft Mauve / Plum
+            {
+                title: isDark ? "#e9d5ff" : "#7e22ce",
+                val: isDark ? "#ffffff" : "#581c87",
+                desc: isDark ? "#c084fc" : "#6b21a8",
+                bg: isDark ? "rgba(88, 28, 135, 0.32)" : "#faf5ff",
+                border: isDark ? "#a855f7" : "#d8b4fe"
+            },
+            // Soft Rose / Terracotta
+            {
+                title: isDark ? "#fecdd3" : "#be123c",
+                val: isDark ? "#ffffff" : "#881337",
+                desc: isDark ? "#fb7185" : "#9f1239",
+                bg: isDark ? "rgba(136, 19, 55, 0.32)" : "#fff1f2",
+                border: isDark ? "#f43f5e" : "#fda4af"
+            },
+            // Soft Sage / Forest
+            {
+                title: isDark ? "#a7f3d0" : "#047857",
+                val: isDark ? "#ffffff" : "#064e3b",
+                desc: isDark ? "#34d399" : "#065f46",
+                bg: isDark ? "rgba(6, 78, 59, 0.32)" : "#ecfdf5",
+                border: isDark ? "#10b981" : "#6ee7b7"
+            },
+            // Soft Teal / Ocean
+            {
+                title: isDark ? "#99f6e4" : "#0f766e",
+                val: isDark ? "#ffffff" : "#134e4a",
+                desc: isDark ? "#2dd4bf" : "#115e59",
+                bg: isDark ? "rgba(19, 78, 74, 0.32)" : "#f0fdfa",
+                border: isDark ? "#14b8a6" : "#5eead4"
+            },
+            // Soft Indigo / Dusk
+            {
+                title: isDark ? "#c7d2fe" : "#4338ca",
+                val: isDark ? "#ffffff" : "#312e81",
+                desc: isDark ? "#818cf8" : "#3730a3",
+                bg: isDark ? "rgba(49, 46, 129, 0.32)" : "#eef2ff",
+                border: isDark ? "#6366f1" : "#a5b4fc"
+            }
+        ];
+        const randomIdx = Math.floor(Math.random() * palettes.length);
+        return palettes[randomIdx];
+    }
+
     function getThaiDayColorStyle(dayNum) {
         const isDark = document.body.classList.contains('theme-dark') || isExtremeNight || isEternalMetal;
         const dayStyles = {
-            0: { title: isDark ? "#fca5a5" : "#fee2e2", val: "#ffffff", desc: isDark ? "#f87171" : "#fca5a5", bg: isDark ? "rgba(239, 68, 68, 0.22)" : "#7f1d1d", border: isDark ? "#f87171" : "#ef4444" }, // Sun Red
-            1: { title: isDark ? "#fde047" : "#fef08a", val: "#ffffff", desc: isDark ? "#fef9c3" : "#fef9c3", bg: isDark ? "rgba(234, 179, 8, 0.22)" : "#713f12", border: isDark ? "#facc15" : "#eab308" }, // Mon Yellow
-            2: { title: isDark ? "#f472b6" : "#fce7f3", val: "#ffffff", desc: isDark ? "#fbcfe8" : "#fbcfe8", bg: isDark ? "rgba(236, 72, 153, 0.22)" : "#831843", border: isDark ? "#f472b6" : "#db2777" }, // Tue Pink
-            3: { title: isDark ? "#34d399" : "#d1fae5", val: "#ffffff", desc: isDark ? "#a7f3d0" : "#a7f3d0", bg: isDark ? "rgba(16, 185, 129, 0.22)" : "#064e3b", border: isDark ? "#34d399" : "#059669" }, // Wed Green
-            4: { title: isDark ? "#fb923c" : "#ffedd5", val: "#ffffff", desc: isDark ? "#fed7aa" : "#fed7aa", bg: isDark ? "rgba(249, 115, 22, 0.22)" : "#7c2d12", border: isDark ? "#fb923c" : "#ea580c" }, // Thu Orange
-            5: { title: isDark ? "#38bdf8" : "#e0f2fe", val: "#ffffff", desc: isDark ? "#bae6fd" : "#bae6fd", bg: isDark ? "rgba(6, 182, 212, 0.22)" : "#164e63", border: isDark ? "#38bdf8" : "#0891b2" }, // Fri Blue
-            6: { title: isDark ? "#c084fc" : "#f3e8ff", val: "#ffffff", desc: isDark ? "#e9d5ff" : "#e9d5ff", bg: isDark ? "rgba(139, 92, 246, 0.22)" : "#4c1d95", border: isDark ? "#c084fc" : "#7c3aed" }  // Sat Purple
+            0: { title: isDark ? "#fca5a5" : "#be123c", val: isDark ? "#ffffff" : "#881337", desc: isDark ? "#f87171" : "#9f1239", bg: isDark ? "rgba(90, 20, 30, 0.35)" : "#fff1f2", border: isDark ? "#9f1239" : "#fecaca" }, // Sun Red
+            1: { title: isDark ? "#fde047" : "#b45309", val: isDark ? "#ffffff" : "#78350f", desc: isDark ? "#facc15" : "#92400e", bg: isDark ? "rgba(80, 50, 10, 0.35)" : "#fefce8", border: isDark ? "#854d0e" : "#fef08a" }, // Mon Yellow
+            2: { title: isDark ? "#f472b6" : "#be185d", val: isDark ? "#ffffff" : "#831843", desc: isDark ? "#ec4899" : "#9d174d", bg: isDark ? "rgba(95, 12, 45, 0.35)" : "#fdf2f8", border: isDark ? "#be185d" : "#fbcfe8" }, // Tue Pink
+            3: { title: isDark ? "#6ee7b7" : "#047857", val: isDark ? "#ffffff" : "#064e3b", desc: isDark ? "#34d399" : "#065f46", bg: isDark ? "rgba(10, 70, 50, 0.35)" : "#ecfdf5", border: isDark ? "#047857" : "#a7f3d0" }, // Wed Green
+            4: { title: isDark ? "#fdba74" : "#c2410c", val: isDark ? "#ffffff" : "#7c2d12", desc: isDark ? "#fb923c" : "#9a3412", bg: isDark ? "rgba(85, 30, 10, 0.35)" : "#fff7ed", border: isDark ? "#c2410c" : "#fed7aa" }, // Thu Orange
+            5: { title: isDark ? "#7dd3fc" : "#0369a1", val: isDark ? "#ffffff" : "#082f49", desc: isDark ? "#38bdf8" : "#075985", bg: isDark ? "rgba(12, 45, 68, 0.35)" : "#f0f9ff", border: isDark ? "#0369a1" : "#bae6fd" }, // Fri Blue
+            6: { title: isDark ? "#d8b4fe" : "#7e22ce", val: isDark ? "#ffffff" : "#581c87", desc: isDark ? "#c084fc" : "#6b21a8", bg: isDark ? "rgba(70, 15, 110, 0.35)" : "#faf5ff", border: isDark ? "#7e22ce" : "#e9d5ff" }  // Sat Purple
         };
         return dayStyles[dayNum] || getElementStyle("วาโย");
     }
@@ -2657,7 +2747,7 @@
         document.getElementById('resSub3Elem').innerText = formalData.sub3;
         applyCardStyle('cardSub3Elem', getElementStyle(formalData.sub3));
 
-        // 4. วันที่ปฏิสนธิ
+        // 4. วันที่ปฏิสนธิ (สุ่มสีในทุก ๆ รอบที่คำนวณ)
         let conceptYear = birthYear;
         if (conceptObj.monthIndex > birthMonth || (conceptObj.monthIndex === birthMonth && conceptObj.dayNum > birthDay)) {
             conceptYear = birthYear - 1;
@@ -2665,11 +2755,11 @@
 
         let conceptYearText = conceptYear ? ` ${formatYearDisplay(conceptYear, currentLang)}` : '';
         document.getElementById('resConception').innerText = `${conceptObj.dayFormatted} ${conceptObj.monthName}${conceptYearText}`;
-        applyCardStyle('cardConception', getElementStyle("เตโช"));
+        applyCardStyle('cardConception', getRandomConceptionStyle());
 
-        // 5. อุตุสมุฏฐาน (เกิด)
+        // 5. อุตุสมุฏฐาน (เกิด) - สีเปลี่ยนตามฤดูกาล
         document.getElementById('resSeasonBirth').innerText = formalData.season;
-        applyCardStyle('cardSeasonBirth', getElementStyle(formalData.season));
+        applyCardStyle('cardSeasonBirth', getSeasonColorStyle(formalData.season));
 
         // 6. จักรราศี
         const zodiac = getZodiacByLang(bMonthIndex, currentLang);
@@ -2677,7 +2767,7 @@
         document.getElementById('resZodiacDesc').innerText = zodiac.desc;
         applyCardStyle('cardZodiac', getElementStyle(zodiac.name));
 
-        // 7. อุตุสมุฏฐาน (ปัจจุบัน / ณ วันตรวจ)
+        // 7. อุตุสมุฏฐาน (ปัจจุบัน / ณ วันตรวจ) - สีเปลี่ยนตามฤดูกาล
         let refDate = new Date();
         if (!isDiagLocked) {
             let diagD = selectedState.diagDay;
@@ -2698,7 +2788,7 @@
 
         document.getElementById('resSeasonCurrent').innerText = cSeason.name;
         document.getElementById('resSeasonCurrentDesc').innerText = cSeason.elem;
-        applyCardStyle('cardSeasonCurrent', getElementStyle(cSeason.name));
+        applyCardStyle('cardSeasonCurrent', getSeasonColorStyle(cSeason.name));
 
         // 8. อายุสมุฏฐาน
         if (birthDay && birthMonth && birthYear) {
@@ -2948,14 +3038,13 @@
         document.getElementById('currentSeasonValue').innerText = `${prefixMap[currentLang]}${seasonData.name} - ${seasonData.elem}`;
     }
 
-    /* ---------------- SCRIPTURE SWIPE & DRAG NAVIGATION ---------------- */
+    /* ---------------- SCRIPTURE NAVIGATION ---------------- */
     const scriptureCategories = ['earth', 'water', 'wind', 'fire', 'country'];
 
     function initDraggableScriptureNav() {
         const nav = document.getElementById('scriptureNavWrapper');
         const content = document.getElementById('refContent');
 
-        // Mouse drag on header
         let isDown = false, startX, scrollLeft;
         if (nav) {
             nav.addEventListener('mousedown', (e) => {
@@ -2974,7 +3063,6 @@
             });
         }
 
-        // Touch swipe on Content (Left/Right to switch category)
         if (content) {
             let touchStartX = 0, touchEndX = 0, touchStartY = 0, touchEndY = 0;
 
@@ -2998,13 +3086,11 @@
                     let idx = scriptureCategories.indexOf(currentCat);
 
                     if (diffX < 0) {
-                        // Swipe Left -> Next
                         idx = (idx + 1) % scriptureCategories.length;
                         const nextCat = scriptureCategories[idx];
                         const nextBtn = document.querySelector(`#scriptureNavWrapper .gliding-btn[data-cat="${nextCat}"]`);
                         showCategory(nextCat, nextBtn, 'left');
                     } else {
-                        // Swipe Right -> Previous
                         idx = (idx - 1 + scriptureCategories.length) % scriptureCategories.length;
                         const nextCat = scriptureCategories[idx];
                         const nextBtn = document.querySelector(`#scriptureNavWrapper .gliding-btn[data-cat="${nextCat}"]`);
@@ -3015,7 +3101,6 @@
         }
     }
 
-    /* ---------------- COMPLETE 100% ORIGINAL SCRIPTURES DATA ---------------- */
     const refData = {
         earth: {
             title: { th: "ปถวีธาตุ (ธาตุดิน ๒๐ ประการ)", en: "Earth Element (20 Physical Attributes)", zh: "土元素（20种身体属性）" },
@@ -3052,7 +3137,7 @@
                 { name: { th: "เสโท (เหงื่อ)", en: "Sweat", zh: "汗液" }, normal: { th: "ระบายความร้อน", en: "Thermoregulation", zh: "体温调节" }, kamreub: { th: "เหงื่อออกมากเกินไป ตัวเย็นซีด", en: "Hyperhidrosis, clammy skin, electrolyte loss", zh: "多汗症，皮肤湿冷，电解质流失" }, yon: { th: "เหงื่อไม่ออก ตัวร้อนเกิน", en: "Anhidrosis, heat intolerance", zh: "无汗症，不耐热" }, pikan: { th: "เหงื่อออกเป็นเลือด หรือเสียเกลือแร่ขั้นวิกฤต", en: "Hematidrosis (bloody sweat), critical dehydration", zh: "血汗症，严重脱水" } },
                 { name: { th: "เมโท (มันข้น)", en: "Adipose Fat", zh: "脂肪组织" }, normal: { th: "พลังงานสำรองและฉนวน", en: "Energy storage and thermal insulation", zh: "能量储存和隔热" }, kamreub: { th: "อ้วนเกินไป ไขมันสะสม", en: "Obesity, metabolic syndrome", zh: "肥胖，代谢综合征" }, yon: { th: "ผอมแห้ง ขาดไขมัน", en: "Severe emaciation, fat depletion", zh: "严重消瘦，脂肪耗尽" }, pikan: { th: "ไขมันพอกอวัยวะ หลอดเลือดอุดตัน", en: "Atherosclerosis, fatty degeneration of organs", zh: "动脉粥样硬化，器官脂肪变性" } },
                 { name: { th: "อัสสุ (น้ำตา)", en: "Tears", zh: "眼泪" }, normal: { th: "หล่อลื่นและปกป้องดวงตา", en: "Ocular lubrication and cleaning", zh: "眼部润滑和清洁" }, kamreub: { th: "น้ำตาไหลไม่หยุด แสบตา", en: "Epiphora (excessive tearing), ocular inflammation", zh: "溢泪（眼泪过多），眼部发炎" }, yon: { th: "ตาแห้ง เคืองตา", en: "Dry eye syndrome, xerophthalmia", zh: "干眼综合征，角膜干燥症" }, pikan: { th: "กระจกตาเป็นแผล ตาบอดจากตาแห้ง", en: "Corneal ulceration, blindness from xerosis", zh: "角膜溃疡，干燥失明" } },
-                { name: { th: "วสา (มันเหลว)", en: "Intercellular Lipids / Oil", zh: "皮脂/液态脂质" }, normal: { th: "ให้ความชุ่มชื้นแก่ผิว", en: "Skin hydration and lipid barrier", zh: "皮肤保湿和脂质屏障" }, kamreub: { th: "หน้ามันเยิ้ม เป็นสิวอุดตัน", en: "Seborrhea, severe acne vulgaris", zh: "皮脂溢，严重寻常痤疮" }, yon: { th: "ผิวแห้งกร้าน แตกแห้ง", en: "Xerosis, severely cracked skin", zh: "皮肤干燥症，皮肤严重开裂" }, pikan: { th: "ไขมันหลอดเลือดอุดตันระดับวิกฤต", en: "Severe lipid plaque rupture, vascular occlusion", zh: "严重脂质斑块破裂，血管闭塞" } },
+                { name: { th: "วสา (มันเหลว)", en: "Intercellular Lipids / Oil", zh: "皮脂/液态脂质" }, normal: { th: "ให้ความชุ่มชื้นแก่ผิว", en: "Skin hydration and lipid barrier", zh: "皮肤保湿和脂质屏障" }, kamreub: { th: "หน้ามันเยิ้ม เป็นสิวอุดตัน", en: "Seborrhea, severe acne vulgaris", zh: "皮脂溢，严重寻常痤疮" }, yon: { th: "ผิวแห้งกร้าน แตกแห้ง", en: "Xerosis, severely cracked skin", zh: "皮肤干燥症，皮肤严重开裂" } },
                 { name: { th: "เขโฬ (น้ำลาย)", en: "Saliva", zh: "唾液" }, normal: { th: "ช่วยย่อยและหล่อลื่นช่องปาก", en: "Oral digestion and lubrication", zh: "口腔消化和润滑" }, kamreub: { th: "น้ำลายสอ ฟูมปาก", en: "Sialorrhea (excessive salivation)", zh: "流涎（唾液分泌过多）" }, yon: { th: "ปากแห้ง คอแห้ง กลืนลำบาก", en: "Xerostomia (dry mouth), dysphagia", zh: "口干症，吞咽困难" }, pikan: { th: "ช่องปากอักเสบเป็นแผล ปากเหม็นเน่า", en: "Severe ulcerative stomatitis, halitosis", zh: "严重溃疡性口炎，口臭" } },
                 { name: { th: "สิงฆานิกา (น้ำมูก)", en: "Nasal Mucus", zh: "鼻涕" }, normal: { th: "ดักจับสิ่งแปลกปลอมในจมูก", en: "Nasal filtration and humidification", zh: "鼻腔过滤和加湿" }, kamreub: { th: "น้ำมูกไหลมาก คัดจมูก", en: "Rhinorrhea, allergic rhinitis", zh: "鼻溢，过敏性鼻炎" }, yon: { th: "โพรงจมูกแห้ง แสบจมูก", en: "Dry nasal passages, epistaxis risk", zh: "鼻腔干燥，鼻出血风险" }, pikan: { th: "ไซนัสอักเสบเป็นหนอง น้ำมูกมีกลิ่นเหม็น", en: "Purulent sinusitis, ozena", zh: "化脓性鼻窦炎，臭鼻症" } },
                 { name: { th: "ลสิกา (น้ำไขข้อ)", en: "Synovial Fluid", zh: "滑液（关节液）" }, normal: { th: "หล่อลื่นข้อต่อ", en: "Joint articular lubrication", zh: "关节润滑" }, kamreub: { th: "น้ำในข้อมากเกิน ข้อบวม", en: "Joint effusion, synovitis", zh: "关节积液，滑膜炎" }, yon: { th: "ข้อแห้ง มีเสียงกรอบแกรบ ปวดข้อ", en: "Joint crepitus, osteoarthritis", zh: "关节摩擦音，骨关节炎" }, pikan: { th: "ข้อติดแข็ง เก๊าท์เรื้อรัง ข้อยึด", en: "Gouty arthritis, joint ankylosis", zh: "痛风性关节炎，关节强直" } },
@@ -3094,47 +3179,46 @@
         const isDark = document.body.classList.contains('theme-dark');
         const container = document.getElementById('refContent');
 
-        // Directional slide class
         container.classList.remove('slide-trans-left', 'slide-trans-right');
-        void container.offsetWidth; // trigger reflow
+        void container.offsetWidth;
         container.classList.add(direction === 'left' ? 'slide-trans-left' : 'slide-trans-right');
 
-        // Color styles matching dark/light comfortably
+        // Styles for scriptures
         const styleMap = {
             earth: {
-                bg: isDark ? "rgba(217, 119, 6, 0.18)" : "#26160c",
-                border: isDark ? "#d97706" : "#b45309",
-                text: isDark ? "#fef3c7" : "#fef3c7",
-                header: isDark ? "#fde68a" : "#fde68a",
-                label: isDark ? "#fde68a" : "#fde047"
+                bg: isDark ? "#1c1510" : "#fbf8f5",
+                border: isDark ? "#573a25" : "#d6c5b3",
+                text: isDark ? "#fdf6e2" : "#4a2c17",
+                header: isDark ? "#fde68a" : "#4a2c17",
+                label: isDark ? "#fde68a" : "#854d0e"
             },
             water: {
-                bg: isDark ? "rgba(56, 189, 248, 0.18)" : "#075985",
-                border: isDark ? "#38bdf8" : "#0284c7",
-                text: isDark ? "#e0f2fe" : "#ffffff",
-                header: isDark ? "#7dd3fc" : "#bae6fd",
-                label: isDark ? "#38bdf8" : "#7dd3fc"
+                bg: isDark ? "#0c2d44" : "#f0f9ff",
+                border: isDark ? "#38bdf8" : "#7dd3fc",
+                text: isDark ? "#ffffff" : "#082f49",
+                header: isDark ? "#7dd3fc" : "#0369a1",
+                label: isDark ? "#38bdf8" : "#075985"
             },
             wind: {
-                bg: isDark ? "rgba(234, 179, 8, 0.18)" : "#713f12",
-                border: isDark ? "#facc15" : "#eab308",
-                text: isDark ? "#fef08a" : "#ffffff",
-                header: isDark ? "#fef08a" : "#fde047",
-                label: isDark ? "#facc15" : "#facc15"
+                bg: isDark ? "#2e2406" : "#fefce8",
+                border: isDark ? "#eab308" : "#fde047",
+                text: isDark ? "#ffffff" : "#451a03",
+                header: isDark ? "#fef08a" : "#b45309",
+                label: isDark ? "#facc15" : "#92400e"
             },
             fire: {
-                bg: isDark ? "rgba(239, 68, 68, 0.18)" : "#7f1d1d",
-                border: isDark ? "#f87171" : "#ef4444",
-                text: isDark ? "#fee2e2" : "#ffffff",
-                header: isDark ? "#fca5a5" : "#fca5a5",
-                label: isDark ? "#f87171" : "#fca5a5"
+                bg: isDark ? "#381216" : "#fff1f2",
+                border: isDark ? "#f43f5e" : "#fda4af",
+                text: isDark ? "#ffffff" : "#4c0519",
+                header: isDark ? "#fca5a5" : "#be123c",
+                label: isDark ? "#f87171" : "#9f1239"
             },
             country: {
-                bg: isDark ? "rgba(168, 85, 247, 0.18)" : "#4c1d95",
-                border: isDark ? "#a855f7" : "#7c3aed",
-                text: isDark ? "#f3e8ff" : "#ffffff",
-                header: isDark ? "#e9d5ff" : "#e9d5ff",
-                label: isDark ? "#c084fc" : "#c084fc"
+                bg: isDark ? "#291238" : "#faf5ff",
+                border: isDark ? "#a855f7" : "#d8b4fe",
+                text: isDark ? "#ffffff" : "#3b0764",
+                header: isDark ? "#e9d5ff" : "#7e22ce",
+                label: isDark ? "#c084fc" : "#6b21a8"
             }
         };
 
