@@ -29,7 +29,7 @@
             --fs-card-val: clamp(1.08rem, 2.5vw, 1.34rem);
         }
 
-        /* ---------------- SOFT CHARCOAL DARK MODE (EASY ON THE EYES, NEAR-WHITE TEXT) ---------------- */
+        /* ---------------- SOFT CHARCOAL DARK MODE ---------------- */
         body.theme-dark {
             --text-primary: #f8fafc;
             --text-secondary: #f1f5f9;
@@ -51,7 +51,7 @@
         }
 
         *, *::before, *::after {
-            text-shadow: none !important;
+            text-shadow: none;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
@@ -65,7 +65,7 @@
             line-height: 1.5;
             font-size: var(--fs-body);
             min-height: 100vh;
-            transition: background-color 0.35s ease, color 0.35s ease;
+            transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
             overflow-x: hidden;
         }
 
@@ -87,6 +87,493 @@
         body.theme-dark .blob-1 { background: #1e2430; opacity: 0.25; }
         body.theme-dark .blob-2 { background: #14324a; opacity: 0.22; }
         body.theme-dark .blob-3 { background: #262040; opacity: 0.18; }
+
+        /* ---------------- PRESERVATION OF WHEEL CIRCLE ---------------- */
+        /* The wheels strictly maintain their crisp, native colors in all themes */
+        .wheel-container {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.12)) !important;
+            transition: transform 0.3s ease;
+        }
+
+        body.theme-dark .wheel-container,
+        body.theme-eternal-metal .wheel-container,
+        body.theme-goofy .wheel-container {
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55)) !important;
+        }
+
+        body.theme-extreme-night .wheel-container {
+            filter: drop-shadow(0 0 24px rgba(0, 243, 255, 0.35)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.9)) !important;
+        }
+
+        .wheel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: none !important;
+            mix-blend-mode: normal !important;
+            opacity: 1 !important;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #bottom-wheel, #res-bottom-wheel { z-index: 1; }
+        #middle-wheel, #res-middle-wheel { z-index: 2; }
+        #top-wheel, #res-top-wheel { z-index: 3; }
+
+        /* ---------------- 1) RETRO CAR DASHBOARD / VFD NIGHT MODE ---------------- */
+        /* Pure 80s/90s Corvette C4 & VFD Digital Gauge Cluster Aesthetics */
+        body.theme-extreme-night {
+            --vfd-cyan: #00f3ff;
+            --vfd-green: #00ff7f;
+            --vfd-amber: #ffaa00;
+            --vfd-dim: #053b42;
+            --text-primary: #00f3ff !important;
+            --text-secondary: #00ff7f !important;
+            --text-muted: #38bdf8 !important;
+            --card-bg-base: #02070d !important;
+            --accent: #00f3ff !important;
+            background-color: #000306 !important;
+            color: #00f3ff !important;
+            background-image: 
+                radial-gradient(ellipse at 50% 10%, rgba(0, 243, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 85%, rgba(0, 255, 127, 0.06) 0%, transparent 50%),
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px) !important;
+            background-size: 100% 100%, 100% 100%, 100% 4px !important; /* Subtle CRT phosphor scanline feel */
+        }
+
+        body.theme-extreme-night .container {
+            background: #01060b !important;
+            border: 2px solid #00f3ff !important;
+            border-radius: var(--radius-md) !important;
+            box-shadow: 
+                0 0 25px rgba(0, 243, 255, 0.35),
+                0 16px 45px rgba(0, 0, 0, 0.95),
+                inset 0 0 40px rgba(0, 0, 0, 0.95),
+                inset 0 0 15px rgba(0, 243, 255, 0.2) !important;
+        }
+
+        body.theme-extreme-night .app-header {
+            background: rgba(0, 4, 8, 0.98) !important;
+            border-bottom: 2px solid #00f3ff !important;
+            box-shadow: 0 4px 25px rgba(0, 243, 255, 0.35) !important;
+        }
+
+        body.theme-extreme-night .brand-title {
+            color: #00f3ff !important;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
+            letter-spacing: 0.06em;
+            text-shadow: 0 0 10px #00f3ff, 0 0 22px rgba(0, 243, 255, 0.6) !important;
+        }
+
+        body.theme-extreme-night .brand-title::before {
+            color: #00ff7f !important;
+            text-shadow: 0 0 12px #00ff7f !important;
+        }
+
+        body.theme-extreme-night .blob-1 { background: #00f3ff !important; opacity: 0.16 !important; }
+        body.theme-extreme-night .blob-2 { background: #00ff7f !important; opacity: 0.14 !important; }
+        body.theme-extreme-night .blob-3 { background: #3b82f6 !important; opacity: 0.12 !important; }
+
+        body.theme-extreme-night .today-mini-box {
+            background: #010a12 !important;
+            border: 1.5px solid #00ff7f !important;
+            color: #00ff7f !important;
+            font-family: monospace !important;
+            box-shadow: 0 0 16px rgba(0, 255, 127, 0.35), inset 0 0 8px rgba(0, 255, 127, 0.15) !important;
+            text-shadow: 0 0 8px #00ff7f !important;
+        }
+
+        body.theme-extreme-night .framed-label-badge {
+            background: rgba(0, 243, 255, 0.08) !important;
+            border: 1.5px solid #00f3ff !important;
+            color: #00f3ff !important;
+            font-family: monospace !important;
+            text-shadow: 0 0 8px #00f3ff !important;
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.25) !important;
+            border-radius: 4px !important;
+        }
+
+        body.theme-extreme-night .glass-picker-card {
+            background: #01070e !important;
+            border: 1.5px solid #00f3ff !important;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 18px rgba(0, 0, 0, 0.8) !important;
+            border-radius: 6px !important;
+        }
+
+        body.theme-extreme-night .drum-lens {
+            background: rgba(0, 243, 255, 0.1) !important;
+            border-top: 2px solid #00f3ff !important;
+            border-bottom: 2px solid #00f3ff !important;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.35) !important;
+        }
+
+        body.theme-extreme-night .drum-item {
+            color: #075985 !important;
+            font-family: ui-monospace, monospace !important;
+        }
+
+        body.theme-extreme-night .drum-item.active {
+            color: #00f3ff !important;
+            text-shadow: 0 0 12px #00f3ff, 0 0 25px rgba(0, 243, 255, 0.7) !important;
+            font-weight: 900 !important;
+        }
+
+        body.theme-extreme-night .drum-step {
+            background: #010a12 !important;
+            border: 1px solid #00f3ff !important;
+            color: #00f3ff !important;
+        }
+
+        body.theme-extreme-night .drum-step:hover {
+            background: #022338 !important;
+            box-shadow: 0 0 10px #00f3ff !important;
+        }
+
+        /* Dash push buttons like [ WIPERS ], [ MAP LIGHT ], [ LIGHTS ] */
+        body.theme-extreme-night .icon-btn, 
+        body.theme-extreme-night .flag-icon-btn {
+            background: #020912 !important;
+            border: 1.5px solid #00f3ff !important;
+            color: #00f3ff !important;
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.25) !important;
+            border-radius: 4px !important;
+        }
+
+        body.theme-extreme-night .icon-btn:hover, 
+        body.theme-extreme-night .flag-icon-btn:hover {
+            background: #04243a !important;
+            box-shadow: 0 0 18px #00f3ff !important;
+        }
+
+        body.theme-extreme-night .btn-glass {
+            background: #020a14 !important;
+            border: 1.5px solid #00f3ff !important;
+            color: #00f3ff !important;
+            font-family: ui-monospace, monospace !important;
+            letter-spacing: 0.04em;
+            text-shadow: 0 0 8px #00f3ff !important;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.25) !important;
+            border-radius: 4px !important;
+        }
+
+        body.theme-extreme-night .btn-glass:hover {
+            background: #04243a !important;
+            box-shadow: 0 0 22px rgba(0, 243, 255, 0.6) !important;
+        }
+
+        body.theme-extreme-night .btn-primary {
+            background: #01181e !important;
+            border: 2px solid #00ff7f !important;
+            color: #00ff7f !important;
+            text-shadow: 0 0 10px #00ff7f, 0 0 20px rgba(0, 255, 127, 0.6) !important;
+            box-shadow: 0 0 22px rgba(0, 255, 127, 0.4) !important;
+        }
+
+        body.theme-extreme-night .btn-primary:hover {
+            background: #022a22 !important;
+            box-shadow: 0 0 30px rgba(0, 255, 127, 0.8) !important;
+        }
+
+        body.theme-extreme-night .btn-reset {
+            background: #140d02 !important;
+            border: 1.5px solid #ffaa00 !important;
+            color: #ffaa00 !important;
+            text-shadow: 0 0 8px #ffaa00 !important;
+            box-shadow: 0 0 14px rgba(255, 170, 0, 0.3) !important;
+        }
+
+        body.theme-extreme-night .btn-ref {
+            background: #01121c !important;
+            border: 1.5px solid #00f3ff !important;
+            color: #00f3ff !important;
+            box-shadow: 0 0 14px rgba(0, 243, 255, 0.3) !important;
+        }
+
+        body.theme-extreme-night .btn-gemini-inner {
+            background: #01060b !important;
+        }
+
+        body.theme-extreme-night .glass-modal-card {
+            background: #01070e !important;
+            border: 2px solid #00f3ff !important;
+            color: #00f3ff !important;
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.45) !important;
+        }
+
+        /* Linear illuminated automotive gauge sliders */
+        body.theme-extreme-night input[type=range]::-webkit-slider-runnable-track {
+            background: linear-gradient(90deg, #00f3ff, #00ff7f, #ffaa00) !important;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.5) !important;
+            height: 6px !important;
+        }
+
+        body.theme-extreme-night input[type=range]::-webkit-slider-thumb {
+            background: #ffffff !important;
+            border: 2px solid #00f3ff !important;
+            box-shadow: 0 0 14px #00f3ff, 0 0 24px #00f3ff !important;
+            border-radius: 2px !important;
+            width: 14px !important;
+            height: 22px !important;
+        }
+
+        body.theme-extreme-night .type-toast {
+            background: #010b14 !important;
+            color: #00f3ff !important;
+            border: 1.5px solid #00f3ff !important;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.6) !important;
+            font-family: monospace !important;
+            text-shadow: 0 0 8px #00f3ff !important;
+        }
+
+        body.theme-extreme-night .gliding-btn {
+            background: #010810 !important;
+            border: 1px solid #053b42 !important;
+            color: #38bdf8 !important;
+            font-family: monospace !important;
+        }
+
+        body.theme-extreme-night .gliding-btn.active {
+            background: #011422 !important;
+            border-color: #00f3ff !important;
+            color: #00f3ff !important;
+            text-shadow: 0 0 8px #00f3ff !important;
+            box-shadow: 0 0 14px rgba(0, 243, 255, 0.4) !important;
+        }
+
+        /* ---------------- 2) "ETERNAL" - GOTHIC BLOOD OBSIDIAN ---------------- */
+        body.theme-eternal-metal {
+            --text-primary: #fff1f2 !important;
+            --text-secondary: #fecdd3 !important;
+            --text-muted: #fda4af !important;
+            --card-bg-base: rgba(30, 8, 11, 0.94) !important;
+            --accent: #ef4444 !important;
+            background-color: #0c0204 !important;
+            color: #fff1f2 !important;
+        }
+        body.theme-eternal-metal .container {
+            background: rgba(24, 6, 9, 0.96) !important;
+            border-color: rgba(239, 68, 68, 0.38) !important;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(239, 68, 68, 0.16) !important;
+        }
+        body.theme-eternal-metal .app-header {
+            background: rgba(15, 3, 5, 0.96) !important;
+            border-bottom: 1px solid rgba(239, 68, 68, 0.32) !important;
+        }
+        body.theme-eternal-metal .blob-1 { background: #881337 !important; opacity: 0.35 !important; }
+        body.theme-eternal-metal .blob-2 { background: #4c0519 !important; opacity: 0.38 !important; }
+        body.theme-eternal-metal .blob-3 { background: #991b1b !important; opacity: 0.26 !important; }
+        body.theme-eternal-metal .today-mini-box {
+            background: #25080c !important;
+            border-color: rgba(239, 68, 68, 0.4) !important;
+            color: #fecdd3 !important;
+        }
+        body.theme-eternal-metal .framed-label-badge {
+            background: rgba(239, 68, 68, 0.15) !important;
+            border-color: rgba(239, 68, 68, 0.4) !important;
+            color: #ff6b81 !important;
+        }
+        body.theme-eternal-metal .glass-picker-card {
+            background: rgba(22, 5, 8, 0.9) !important;
+            border-color: rgba(239, 68, 68, 0.28) !important;
+        }
+        body.theme-eternal-metal .drum-lens {
+            background: rgba(239, 68, 68, 0.14) !important;
+            border-color: rgba(239, 68, 68, 0.48) !important;
+        }
+        body.theme-eternal-metal .drum-item { color: #9f1239 !important; }
+        body.theme-eternal-metal .drum-item.active {
+            color: #ff4d6d !important;
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.55) !important;
+        }
+        body.theme-eternal-metal .drum-step {
+            background: #26070b !important;
+            border-color: rgba(239, 68, 68, 0.32) !important;
+            color: #fda4af !important;
+        }
+        body.theme-eternal-metal .drum-step:hover {
+            background: #3e0a12 !important;
+            color: #ff4d6d !important;
+        }
+        body.theme-eternal-metal .icon-btn, body.theme-eternal-metal .flag-icon-btn {
+            background: #25080c !important;
+            border-color: rgba(239, 68, 68, 0.32) !important;
+            color: #fecdd3 !important;
+        }
+        body.theme-eternal-metal .icon-btn:hover, body.theme-eternal-metal .flag-icon-btn:hover {
+            background: #3a0b12 !important;
+            border-color: #ef4444 !important;
+            color: #ff6b81 !important;
+        }
+        body.theme-eternal-metal .btn-glass {
+            background: rgba(34, 8, 12, 0.85) !important;
+            border-color: rgba(239, 68, 68, 0.35) !important;
+            color: #fff1f2 !important;
+        }
+        body.theme-eternal-metal .btn-glass:hover {
+            background: rgba(50, 12, 18, 0.92) !important;
+            border-color: #ef4444 !important;
+        }
+        body.theme-eternal-metal .btn-primary {
+            background: rgba(225, 29, 72, 0.32) !important;
+            border-color: rgba(244, 63, 94, 0.65) !important;
+            color: #fda4af !important;
+        }
+        body.theme-eternal-metal .btn-gemini-inner {
+            background: rgba(24, 6, 9, 0.96) !important;
+        }
+        body.theme-eternal-metal .glass-modal-card {
+            background: #1b0508 !important;
+            border-color: rgba(239, 68, 68, 0.4) !important;
+            color: #fff1f2 !important;
+        }
+        body.theme-eternal-metal input[type=range]::-webkit-slider-runnable-track {
+            background: rgba(239, 68, 68, 0.28) !important;
+        }
+        body.theme-eternal-metal .type-toast {
+            background: #25070a !important;
+            color: #ff6b81 !important;
+            border: 1px solid #ef4444 !important;
+        }
+
+        /* ---------------- 3) "GOOFBALL" - MAXIMUM RAINBOW ANIMATED PSYCHEDELIC DARK MODE ---------------- */
+        body.theme-goofy {
+            --text-primary: #ffffff !important;
+            --text-secondary: #fdf4ff !important;
+            --text-muted: #f0abfc !important;
+            --card-bg-base: rgba(18, 10, 30, 0.94) !important;
+            background-color: var(--goofy-bg, #0b0714) !important;
+            color: #ffffff !important;
+            background-image: radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--rainbow-1, #ff007f) 22%, transparent), transparent 45%),
+                              radial-gradient(circle at 85% 75%, color-mix(in srgb, var(--rainbow-3, #00f0ff) 22%, transparent), transparent 45%),
+                              radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--rainbow-5, #ffff00) 18%, transparent), transparent 50%) !important;
+        }
+        body.theme-goofy .container {
+            background: rgba(14, 8, 24, 0.95) !important;
+            border: 2px solid var(--accent) !important;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 32px color-mix(in srgb, var(--accent) 45%, transparent) !important;
+        }
+        body.theme-goofy .app-header {
+            background: rgba(10, 5, 18, 0.96) !important;
+            border-bottom: 2px solid var(--accent) !important;
+            box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 30%, transparent) !important;
+        }
+        body.theme-goofy .brand-title {
+            background: linear-gradient(90deg, var(--rainbow-1, #ff0055), var(--rainbow-3, #00ffcc), var(--rainbow-5, #ffff00));
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 70%, transparent));
+        }
+        body.theme-goofy .blob-1 { background: var(--rainbow-1, #ff0055) !important; opacity: 0.4 !important; }
+        body.theme-goofy .blob-2 { background: var(--rainbow-3, #00ffff) !important; opacity: 0.35 !important; }
+        body.theme-goofy .blob-3 { background: var(--rainbow-5, #ffff00) !important; opacity: 0.3 !important; }
+        body.theme-goofy .today-mini-box {
+            background: #1c0e30 !important;
+            border: 1.5px solid var(--accent) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 40%, transparent);
+        }
+        body.theme-goofy .framed-label-badge {
+            background: color-mix(in srgb, var(--accent) 22%, transparent) !important;
+            border: 1.5px solid var(--accent) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 40%, transparent);
+        }
+        body.theme-goofy .glass-picker-card {
+            background: rgba(16, 9, 28, 0.92) !important;
+            border: 1.5px solid color-mix(in srgb, var(--accent) 45%, transparent) !important;
+            box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+        body.theme-goofy .drum-lens {
+            background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+            border: 1.5px solid var(--accent) !important;
+            box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent) !important;
+        }
+        body.theme-goofy .drum-item { color: #c084fc !important; }
+        body.theme-goofy .drum-item.active {
+            color: var(--accent) !important;
+            text-shadow: 0 0 14px var(--accent) !important;
+        }
+        body.theme-goofy .drum-step {
+            background: #1d0f32 !important;
+            border-color: var(--accent) !important;
+            color: #ffffff !important;
+        }
+        body.theme-goofy .drum-step:hover {
+            background: #311654 !important;
+            color: var(--accent) !important;
+        }
+        body.theme-goofy .icon-btn, body.theme-goofy .flag-icon-btn {
+            background: #1d0f32 !important;
+            border: 1.5px solid var(--accent) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 30%, transparent);
+        }
+        body.theme-goofy .icon-btn:hover, body.theme-goofy .flag-icon-btn:hover {
+            background: #331557 !important;
+            border-color: var(--rainbow-2, #ff00aa) !important;
+            transform: scale(1.1);
+        }
+        body.theme-goofy .btn-glass {
+            background: rgba(30, 15, 50, 0.88) !important;
+            border: 1.5px solid color-mix(in srgb, var(--accent) 50%, transparent) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 25%, transparent);
+        }
+        body.theme-goofy .btn-glass:hover {
+            background: rgba(48, 22, 80, 0.94) !important;
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent);
+        }
+        body.theme-goofy .btn-primary {
+            background: linear-gradient(135deg, color-mix(in srgb, var(--rainbow-1, #ff0055) 35%, #180a2b), color-mix(in srgb, var(--rainbow-3, #00ffff) 35%, #180a2b)) !important;
+            border: 2px solid var(--accent) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 50%, transparent) !important;
+        }
+        body.theme-goofy .btn-gemini-inner {
+            background: rgba(14, 8, 24, 0.96) !important;
+        }
+        body.theme-goofy .glass-modal-card {
+            background: #150a24 !important;
+            border: 2px solid var(--accent) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 35px color-mix(in srgb, var(--accent) 40%, transparent);
+        }
+        body.theme-goofy input[type=range]::-webkit-slider-runnable-track {
+            background: color-mix(in srgb, var(--accent) 35%, transparent) !important;
+        }
+        body.theme-goofy .type-toast {
+            background: #170929 !important;
+            color: #ffffff !important;
+            border: 1.5px solid var(--accent) !important;
+            box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent) !important;
+        }
+
+        /* ---------------- SKELETON RUNNER (GOOFBALL MODE) ---------------- */
+        /* Giant full-screen height on every device, sprints across in < 1 second */
+        .goofy-runner-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: auto;
+            max-width: none;
+            max-height: 100vh;
+            object-fit: contain;
+            z-index: 100000;
+            pointer-events: none;
+            transform: translateX(120vw);
+            transition: transform 0.75s linear;
+            will-change: transform;
+            filter: drop-shadow(0 0 28px rgba(0, 0, 0, 0.9));
+        }
 
         @keyframes floatBlob {
             0% { transform: translate(0, 0) scale(1); }
@@ -150,6 +637,73 @@
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        /* ---------------- GEMINI-STYLE SHIMMERING AURA INFO BUTTON ---------------- */
+        .btn-gemini-info {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5px;
+            background: linear-gradient(135deg, #4285f4, #9b72cb, #d96570, #f4b400, #4285f4);
+            background-size: 300% 300%;
+            border: none;
+            animation: geminiBorderFlow 4s linear infinite, geminiGlowPulse 2.8s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px rgba(155, 114, 203, 0.35);
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-gemini-info:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 16px rgba(66, 133, 244, 0.6);
+        }
+
+        .btn-gemini-info:active {
+            transform: scale(0.95);
+        }
+
+        .btn-gemini-inner {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: calc(var(--radius-sm) - 1.5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        body.theme-dark .btn-gemini-inner {
+            background: rgba(22, 26, 34, 0.92);
+        }
+
+        .gemini-svg-icon {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: url(#geminiGrad);
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 1px 2px rgba(155, 114, 203, 0.4));
+        }
+
+        @keyframes geminiBorderFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes geminiGlowPulse {
+            0% { box-shadow: 0 0 6px rgba(66, 133, 244, 0.25), 0 0 12px rgba(155, 114, 203, 0.2); }
+            100% { box-shadow: 0 0 14px rgba(217, 101, 112, 0.5), 0 0 20px rgba(66, 133, 244, 0.4); }
         }
 
         .flag-icon-btn {
@@ -261,35 +815,6 @@
             }
         }
 
-        .wheel-container {
-            position: relative;
-            width: 100%;
-            max-width: 360px;
-            aspect-ratio: 1 / 1;
-            margin: 0 auto;
-            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.08));
-            transition: all 0.5s ease;
-        }
-
-        body.theme-dark .wheel-container {
-            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
-        }
-
-        .wheel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        #bottom-wheel, #res-bottom-wheel { z-index: 1; }
-        #middle-wheel, #res-middle-wheel { z-index: 2; }
-        #top-wheel, #res-top-wheel { z-index: 3; }
-
-        /* ---------------- SOFT BADGES ---------------- */
         .framed-label-badge {
             display: inline-flex;
             align-items: center;
@@ -640,7 +1165,7 @@
 
         body.theme-dark .icon-btn:hover { background: #242b38; }
 
-        /* ---------------- SOFT RESULT GRID ---------------- */
+        /* ---------------- SOFT RESULT GRID & EXPANDABLE CARD ---------------- */
         .result-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
@@ -654,7 +1179,7 @@
             border-radius: var(--radius-md);
             padding: 14px 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
         }
 
         .result-card:hover { transform: translateY(-2px); }
@@ -681,6 +1206,88 @@
             color: var(--card-text-desc, var(--text-muted));
         }
 
+        /* IN-PLACE EXPANDABLE BIRTH ELEMENT CARD */
+        .expandable-birth-card {
+            cursor: pointer;
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .expandable-birth-card:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .expandable-birth-card.expanded {
+            grid-column: 1 / -1;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.1);
+        }
+
+        .card-expand-indicator {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(2, 132, 199, 0.08);
+            color: var(--card-text-title, var(--accent));
+            font-size: 0.8rem;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
+        }
+
+        .expandable-birth-card.expanded .card-expand-indicator {
+            transform: rotate(180deg);
+            background: rgba(2, 132, 199, 0.2);
+        }
+
+        .birth-element-expanded-panel {
+            display: none;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px dashed rgba(148, 163, 184, 0.4);
+            animation: fadeInExpanded 0.35s ease forwards;
+        }
+
+        .expandable-birth-card.expanded .birth-element-expanded-panel {
+            display: block;
+        }
+
+        @keyframes fadeInExpanded {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .elem-detail-block {
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .elem-detail-block:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .elem-detail-heading {
+            font-size: var(--fs-small);
+            font-weight: 700;
+            color: var(--card-text-title, var(--accent));
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .elem-detail-text {
+            font-size: var(--fs-small);
+            line-height: 1.55;
+            color: var(--card-text-desc, var(--text-secondary));
+        }
+
         .thai-lunar-symbol {
             display: inline-flex;
             align-items: center;
@@ -699,7 +1306,7 @@
             line-height: 0.9;
         }
 
-        /* ---------------- SCRIPTURE GLIDING NAV (WITH DARK INACTIVE TABS) ---------------- */
+        /* ---------------- SCRIPTURE GLIDING NAV ---------------- */
         .gliding-nav-wrapper {
             position: sticky;
             top: 60px;
@@ -739,14 +1346,12 @@
             white-space: nowrap;
         }
 
-        /* LIGHT MODE ACTIVE TABS */
         .gliding-btn[data-cat="earth"].active { background: #fbf8f5 !important; color: #4a2c17 !important; border-color: #d6c5b3 !important; }
         .gliding-btn[data-cat="water"].active { background: #f0f9ff !important; color: #0369a1 !important; border-color: #7dd3fc !important; }
         .gliding-btn[data-cat="wind"].active { background: #fefce8 !important; color: #b45309 !important; border-color: #fde047 !important; }
         .gliding-btn[data-cat="fire"].active { background: #fff1f2 !important; color: #be123c !important; border-color: #fda4af !important; }
         .gliding-btn[data-cat="country"].active { background: #faf5ff !important; color: #7e22ce !important; border-color: #d8b4fe !important; }
 
-        /* DARK MODE: INACTIVE TABS ARE DARK, NOT LIGHT-GRAY */
         body.theme-dark .gliding-btn:not(.active) {
             background: #181d26 !important;
             border-color: rgba(255, 255, 255, 0.08) !important;
@@ -758,7 +1363,6 @@
             color: #f1f5f9 !important;
         }
 
-        /* DARK MODE ACTIVE TABS: VAYO HAS DISTINCT GLOWING AMBER */
         body.theme-dark .gliding-btn[data-cat="earth"].active { background: #1c1510 !important; color: #fdf6e2 !important; border-color: #573a25 !important; }
         body.theme-dark .gliding-btn[data-cat="water"].active { background: #0c2d44 !important; color: #bae6fd !important; border-color: #38bdf8 !important; }
         body.theme-dark .gliding-btn[data-cat="wind"].active { background: #2e2406 !important; color: #fef08a !important; border-color: #eab308 !important; }
@@ -822,61 +1426,7 @@
             color: #f1f5f9;
         }
 
-        .goofy-runner-img {
-            position: fixed;
-            bottom: 20vh;
-            right: -250px;
-            width: 140px;
-            height: auto;
-            z-index: 99999;
-            pointer-events: none;
-            user-select: none;
-            transition: transform 0.1s linear;
-        }
-
-        /* Extreme & Special Modes */
-        body.theme-extreme-night {
-            background-color: #000000 !important;
-            color: #00cc52 !important;
-        }
-
-        body.theme-extreme-night .app-header {
-            background: rgba(0, 10, 3, 0.95) !important;
-            border-bottom: 1px solid #00aa44 !important;
-        }
-
-        body.theme-extreme-night .container,
-        body.theme-extreme-night .result-card,
-        body.theme-extreme-night .glass-picker-card,
-        body.theme-extreme-night .scripture-item-card {
-            background: rgba(0, 14, 4, 0.95) !important;
-            border-color: #00aa44 !important;
-            color: #00cc52 !important;
-        }
-
-        body.theme-eternal-metal {
-            background-color: #030000 !important;
-            color: #e04545 !important;
-        }
-
-        body.theme-eternal-metal .app-header {
-            background: rgba(18, 0, 0, 0.95) !important;
-            border-bottom: 1.5px solid #a81c1c !important;
-        }
-
-        body.theme-goofy { animation: bgParty 5s infinite alternate; }
-
-        body.eyecare-filter::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background-color: rgba(245, 158, 11, 0.12);
-            pointer-events: none;
-            z-index: 999999;
-            mix-blend-mode: multiply;
-        }
-
+        /* ---------------- GLASS MODAL OVERLAYS ---------------- */
         .glass-modal-overlay {
             position: fixed;
             top: 0; left: 0;
@@ -895,9 +1445,11 @@
             background: var(--card-bg-base);
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: var(--radius-md);
-            padding: 20px;
-            max-width: 420px;
+            padding: 22px;
+            max-width: 580px;
             width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
         }
 
@@ -932,11 +1484,76 @@
             color: #ffffff !important;
             border-color: var(--accent) !important;
         }
+
+        /* Info Modal Tags & Highlights */
+        .color-tag-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            margin-right: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .color-tag-pink { background: #ffe4e6; color: #be123c; border-color: #fda4af; }
+        .color-tag-orange { background: #ffedd5; color: #c2410c; border-color: #fed7aa; }
+        .color-tag-red { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+        .color-tag-yellow { background: #fef9c3; color: #a16207; border-color: #fde047; }
+        .color-tag-lightgreen { background: #dcfce7; color: #15803d; border-color: #86efac; }
+        .color-tag-darkgreen { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+        .color-tag-cyan { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
+        .color-tag-navy { background: #e0e7ff; color: #3730a3; border-color: #a5b4fc; }
+        .color-tag-purple { background: #f3e8ff; color: #6b21a8; border-color: #d8b4fe; }
+        .color-tag-black { background: #f1f5f9; color: #0f172a; border-color: #94a3b8; }
+
+        body.theme-dark .color-tag-pink { background: #4c0519; color: #fecdd3; border-color: #9f1239; }
+        body.theme-dark .color-tag-orange { background: #431407; color: #fed7aa; border-color: #9a3412; }
+        body.theme-dark .color-tag-red { background: #450a0a; color: #fecaca; border-color: #991b1b; }
+        body.theme-dark .color-tag-yellow { background: #422006; color: #fef08a; border-color: #854d0e; }
+        body.theme-dark .color-tag-lightgreen { background: #052e16; color: #bbf7d0; border-color: #166534; }
+        body.theme-dark .color-tag-darkgreen { background: #022c22; color: #a7f3d0; border-color: #115e59; }
+        body.theme-dark .color-tag-cyan { background: #082f49; color: #bae6fd; border-color: #0369a1; }
+        body.theme-dark .color-tag-navy { background: #1e1b4b; color: #c7d2fe; border-color: #3730a3; }
+        body.theme-dark .color-tag-purple { background: #3b0764; color: #e9d5ff; border-color: #6b21a8; }
+        body.theme-dark .color-tag-black { background: #0f172a; color: #f8fafc; border-color: #475569; }
+
+        .info-section-block {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        .info-section-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .info-sub-title {
+            font-size: var(--fs-h3);
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
     </style>
 </head>
 <body class="theme-light">
 
+<!-- SVG GRADIENT DEF FOR GEMINI BUTTON -->
+<svg width="0" height="0" style="position:absolute;">
+    <defs>
+        <linearGradient id="geminiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4285f4"/>
+            <stop offset="35%" stop-color="#9b72cb"/>
+            <stop offset="70%" stop-color="#d96570"/>
+            <stop offset="100%" stop-color="#f4b400"/>
+        </linearGradient>
+    </defs>
+</svg>
+
 <!-- AUDIO ELEMENTS -->
+<audio id="nightBgm" src="night.mp3" loop preload="none"></audio>
 <audio id="metalBgm" src="metal.mp3" loop preload="none"></audio>
 <audio id="goofyBgm" src="goofy.mp3" loop preload="none"></audio>
 
@@ -950,6 +1567,17 @@
 <div class="app-header">
     <div class="brand-title">วงกลมธาตุเจ้าเรือนออนไลน์</div>
     <div class="header-controls">
+        <!-- GEMINI AURA INFO BUTTON (i) -->
+        <button class="btn-gemini-info" id="infoBtn" onclick="handleInfoBtnClick()" title="คู่มือใช้งานและคำอธิบายระบบ" aria-label="Information">
+            <div class="btn-gemini-inner">
+                <svg class="gemini-svg-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+            </div>
+        </button>
+
         <button class="flag-icon-btn" id="langBtn" onclick="cycleLanguage()" title="Switch Language" aria-label="Switch Language">
             <span id="langFlagSvg"></span>
         </button>
@@ -1092,10 +1720,15 @@
         <h3 id="txtResHeading" style="margin: 0 0 10px 0; font-size: var(--fs-h2);">ผลการวิเคราะห์สมุฏฐาน</h3>
 
         <div class="result-grid">
-            <div class="result-card" id="cardMainElem">
+            <!-- IN-PLACE ACCORDION EXPANDABLE CARD: ธาตุเจ้าเรือน (วันเกิด) -->
+            <div class="result-card expandable-birth-card" id="cardMainElem" onclick="toggleBirthElementExpansion()" title="แตะเพื่อขยายดูคุณลักษณะ อาหาร และสุขภาพตามธาตุ">
+                <div class="card-expand-indicator" id="cardExpandArrow">▼</div>
                 <div class="card-title"><span id="txtCardMain">ธาตุเจ้าเรือน (วันเกิด)</span></div>
                 <div class="card-value" id="resMainElem">-</div>
                 <div class="card-desc" id="resMainDesc">-</div>
+
+                <!-- EXPANDED CONTENT INSIDE THE SAME CARD -->
+                <div class="birth-element-expanded-panel" id="birthExpandedPanel"></div>
             </div>
 
             <div class="result-card" id="cardSub2Elem">
@@ -1185,7 +1818,7 @@
 
 </div>
 
-<!-- MODAL -->
+<!-- MODAL: YEAR CONFIRM -->
 <div id="yearSelectModal" class="glass-modal-overlay" style="display: none;">
     <div class="glass-modal-card fade-in">
         <h3 id="modalTitle" style="margin-top:0; margin-bottom:6px; color:var(--accent);">📅 ยืนยันปีเกิด</h3>
@@ -1194,6 +1827,20 @@
         <div style="margin-top: 14px; display:flex; gap:8px;">
             <button type="button" class="btn-glass" id="btnModalCancel" onclick="closeYearModal()" style="flex:1; padding:8px;">ยกเลิก</button>
             <button type="button" class="btn-glass btn-primary" id="btnModalConfirm" onclick="confirmYearAndCalculate()" style="flex:1.5; padding:8px;">ยืนยันและวิเคราะห์</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: UNIVERSAL INFO & WEBSITE USER GUIDE (i Button) -->
+<div id="universalInfoModal" class="glass-modal-overlay" style="display: none;">
+    <div class="glass-modal-card fade-in">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid rgba(148,163,184,0.2); padding-bottom:8px;">
+            <h3 id="universalInfoTitle" style="margin:0; color:var(--accent); font-size:var(--fs-h2);">คำอธิบายและวิธีใช้งาน</h3>
+            <button class="icon-btn" style="width:30px; height:30px;" onclick="closeUniversalInfoModal()">✕</button>
+        </div>
+        <div id="universalInfoBody" style="font-size:var(--fs-body); line-height:1.6;"></div>
+        <div style="margin-top:16px; text-align:right;">
+            <button type="button" class="btn-glass" onclick="closeUniversalInfoModal()" style="width:auto; padding:8px 24px;">ปิด</button>
         </div>
     </div>
 </div>
@@ -1208,7 +1855,7 @@
         return Math.round((1400 + Math.random() * (2600 - 1400)));
     }
 
-    /* ---------------- KEYBOARD TYPING & SHORTCUTS ---------------- */
+    /* KEYBOARD SHORTCUTS & INPUT HANDLING */
     let keyBuffer = "";
     let dateTypeBuffer = "";
     let dateTypeTimer = null;
@@ -1311,7 +1958,7 @@
         selectedState.bMonth = m;
         selectedState.bYear = yearAD;
 
-        SFX.soothingChime(660, 0.4);
+        SFX.click();
         initAllDrumPickers();
         handleWheelAutoSync();
         hideToast();
@@ -1351,7 +1998,7 @@
 
         validateDiagDateTime();
         refreshDiagPickers();
-        SFX.soothingChime(784, 0.4);
+        SFX.toggle();
         hideToast();
     }
 
@@ -1365,26 +2012,94 @@
         isGoofball = (modeName === 'goofball');
 
         body.classList.remove('theme-extreme-night', 'theme-eternal-metal', 'theme-goofy');
+        stopNightBGM();
         stopMetalBGM();
         stopGoofyBGM();
         stopGoofyRunner();
+        stopRainbowAccent();
 
         if (isExtremeNight) {
-            body.classList.remove('theme-light', 'theme-dark', 'eyecare-filter');
-            body.classList.add('theme-extreme-night');
-            SFX.soothingChime();
+            body.classList.remove('theme-light', 'eyecare-filter');
+            body.classList.add('theme-dark', 'theme-extreme-night');
+            startNightBGM();
+            SFX.toggle();
+            refreshDynamicContentColors();
         } else if (isEternalMetal) {
-            body.classList.remove('theme-light', 'theme-dark', 'eyecare-filter');
-            body.classList.add('theme-eternal-metal');
+            body.classList.remove('theme-light', 'eyecare-filter');
+            body.classList.add('theme-dark', 'theme-eternal-metal');
             startMetalBGM();
+            refreshDynamicContentColors();
         } else if (isGoofball) {
-            body.classList.add('theme-goofy');
+            body.classList.remove('theme-light', 'eyecare-filter');
+            body.classList.add('theme-dark', 'theme-goofy');
             startGoofyBGM();
             startGoofyRunner();
+            startRainbowAccent();
+            refreshDynamicContentColors();
+            SFX.toggle();
         } else {
+            body.classList.remove('theme-dark');
             applyTheme(currentThemeIndex);
-            SFX.soothingChime();
+            SFX.toggle();
         }
+    }
+
+    function refreshDynamicContentColors() {
+        if (document.getElementById('resultPanel').style.display !== 'none') {
+            let botDeg = parseFloat(botSlider.value) || 0;
+            let midDeg = parseFloat(midSlider.value) || 0;
+            populateResultCards(botDeg, midDeg);
+        }
+        if (document.getElementById('optionalInfoArea').style.display !== 'none') {
+            const activeTab = document.querySelector('#scriptureNavWrapper .gliding-btn.active');
+            const cat = activeTab ? activeTab.dataset.cat : 'earth';
+            showCategory(cat, activeTab);
+        }
+    }
+
+    /* MAXIMUM RAINBOW ANIMATION (GOOFBALL MODE) */
+    let rainbowAccentFrame = null;
+    function startRainbowAccent() {
+        let hue = 0;
+        const step = () => {
+            if (!isGoofball) return;
+            hue = (hue + 2.8) % 360;
+            const root = document.documentElement;
+            root.style.setProperty('--accent', `hsl(${hue}, 100%, 55%)`);
+            root.style.setProperty('--rainbow-1', `hsl(${hue}, 100%, 55%)`);
+            root.style.setProperty('--rainbow-2', `hsl(${(hue + 60) % 360}, 100%, 55%)`);
+            root.style.setProperty('--rainbow-3', `hsl(${(hue + 120) % 360}, 100%, 55%)`);
+            root.style.setProperty('--rainbow-4', `hsl(${(hue + 180) % 360}, 100%, 55%)`);
+            root.style.setProperty('--rainbow-5', `hsl(${(hue + 240) % 360}, 100%, 55%)`);
+            root.style.setProperty('--rainbow-6', `hsl(${(hue + 300) % 360}, 100%, 55%)`);
+            root.style.setProperty('--goofy-bg', `hsl(${hue}, 45%, 7%)`);
+            rainbowAccentFrame = requestAnimationFrame(step);
+        };
+        rainbowAccentFrame = requestAnimationFrame(step);
+    }
+
+    function stopRainbowAccent() {
+        if (rainbowAccentFrame) cancelAnimationFrame(rainbowAccentFrame);
+        rainbowAccentFrame = null;
+        const root = document.documentElement;
+        root.style.removeProperty('--accent');
+        root.style.removeProperty('--rainbow-1');
+        root.style.removeProperty('--rainbow-2');
+        root.style.removeProperty('--rainbow-3');
+        root.style.removeProperty('--rainbow-4');
+        root.style.removeProperty('--rainbow-5');
+        root.style.removeProperty('--rainbow-6');
+        root.style.removeProperty('--goofy-bg');
+    }
+
+    /* BGM PLAYBACK HANDLERS */
+    function startNightBGM() {
+        const audio = document.getElementById('nightBgm');
+        if (audio) { audio.currentTime = 0; audio.play().catch(e => console.log(e)); }
+    }
+    function stopNightBGM() {
+        const audio = document.getElementById('nightBgm');
+        if (audio) { audio.pause(); audio.currentTime = 0; }
     }
 
     function startMetalBGM() {
@@ -1405,11 +2120,12 @@
         if (audio) { audio.pause(); audio.currentTime = 0; }
     }
 
+    /* FULL-SCREEN SKELETON RUNNER (< 1 SECOND CROSSING) */
     let goofyTimer = null;
     function startGoofyRunner() {
         stopGoofyRunner();
         spawnSkeletonRunner();
-        goofyTimer = setInterval(spawnSkeletonRunner, 2800);
+        goofyTimer = setInterval(spawnSkeletonRunner, 2600);
     }
 
     function stopGoofyRunner() {
@@ -1422,17 +2138,21 @@
         const img = document.createElement('img');
         img.src = 'skeleton.gif';
         img.className = 'goofy-runner-img';
-        img.style.bottom = `${Math.random() * 55 + 15}vh`;
+        img.style.transform = 'translateX(120vw)';
         document.body.appendChild(img);
 
+        void img.offsetWidth; // Force layout pass
+
         requestAnimationFrame(() => {
-            img.style.transform = `translateX(-${window.innerWidth + 400}px)`;
+            requestAnimationFrame(() => {
+                img.style.transform = 'translateX(-150vw)';
+            });
         });
 
-        setTimeout(() => img.remove(), 250);
+        setTimeout(() => img.remove(), 900);
     }
 
-    /* ---------------- CALM SOOTHING AUDIO ---------------- */
+    /* ---------------- SYNTH-BASED & PROCEDURAL SFX AUDIO ENGINE ---------------- */
     const SFX = {
         ctx: null, enabled: true,
         init() {
@@ -1447,9 +2167,54 @@
             this.init();
             if (!this.ctx) return;
             const now = this.ctx.currentTime;
+
+            // Retro Dashboard Cyberpunk Synth (Night Mode)
+            if (isExtremeNight) {
+                const osc = this.ctx.createOscillator();
+                const filter = this.ctx.createBiquadFilter();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(freq * 3.8, now);
+                filter.frequency.exponentialRampToValueAtTime(freq * 0.9, now + duration);
+                filter.Q.value = 6.2;
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.linearRampToValueAtTime(0.045, now + 0.01);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + duration);
+                return;
+            }
+
+            // Cartoon Spring Boing Synth (Goofball Mode)
+            if (isGoofball) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq * 0.4, now);
+                osc.frequency.exponentialRampToValueAtTime(freq * 2.3, now + duration * 0.35);
+                osc.frequency.linearRampToValueAtTime(freq * 1.7, now + duration * 0.65);
+                osc.frequency.linearRampToValueAtTime(freq * 2.1, now + duration);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.linearRampToValueAtTime(0.05, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + duration);
+                return;
+            }
+
+            // Calm Standard Sine Bell
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
-            
             osc.type = 'sine';
             osc.frequency.setValueAtTime(freq, now);
             gain.gain.setValueAtTime(0.0001, now);
@@ -1466,14 +2231,61 @@
             this.init();
             if (!this.ctx) return;
             const now = this.ctx.currentTime;
+
+            // Night Mode: Digital Cluster Tachometer Computation Sweep
+            if (isExtremeNight) {
+                const osc = this.ctx.createOscillator();
+                const filter = this.ctx.createBiquadFilter();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                filter.type = 'bandpass';
+                filter.Q.value = 4.5;
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.exponentialRampToValueAtTime(940, now + duration * 0.6);
+                osc.frequency.exponentialRampToValueAtTime(520, now + duration);
+                filter.frequency.setValueAtTime(400, now);
+                filter.frequency.exponentialRampToValueAtTime(2800, now + duration * 0.5);
+                filter.frequency.exponentialRampToValueAtTime(700, now + duration);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.linearRampToValueAtTime(0.04, now + 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + duration);
+                return;
+            }
+
+            // Goofball Mode: Wacky Cartoon Slide Whistle
+            if (isGoofball) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(240, now);
+                osc.frequency.exponentialRampToValueAtTime(1380, now + duration * 0.65);
+                osc.frequency.exponentialRampToValueAtTime(320, now + duration);
+
+                gain.gain.setValueAtTime(0.0001, now);
+                gain.gain.linearRampToValueAtTime(0.045, now + 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + duration);
+                return;
+            }
+
+            // Standard Calm Swell
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
-            
             osc.type = 'sine';
             osc.frequency.setValueAtTime(240, now);
             osc.frequency.exponentialRampToValueAtTime(400, now + duration * 0.5);
             osc.frequency.exponentialRampToValueAtTime(300, now + duration);
-            
             gain.gain.setValueAtTime(0.0001, now);
             gain.gain.linearRampToValueAtTime(0.015, now + 0.1);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
@@ -1488,15 +2300,47 @@
             this.init();
             if (!this.ctx) return;
             const now = this.ctx.currentTime;
+
+            // Night Mode: Square-wave automotive relay click
+            if (isExtremeNight) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(1020, now);
+                osc.frequency.exponentialRampToValueAtTime(320, now + 0.022);
+                gain.gain.setValueAtTime(0.02, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.022);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.025);
+                return;
+            }
+
+            // Goofball Mode: Comedic bubble pop
+            if (isGoofball) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(1550, now);
+                osc.frequency.exponentialRampToValueAtTime(460, now + 0.035);
+                gain.gain.setValueAtTime(0.04, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.04);
+                return;
+            }
+
+            // Standard Tick
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
-            
             osc.type = 'sine';
             osc.frequency.setValueAtTime(800, now);
             gain.gain.setValueAtTime(0.0001, now);
             gain.gain.linearRampToValueAtTime(0.008, now + 0.004);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
-            
             osc.connect(gain);
             gain.connect(this.ctx.destination);
             osc.start(now);
@@ -1507,28 +2351,72 @@
             this.init();
             if (!this.ctx) return;
             const now = this.ctx.currentTime;
+
+            // Night Mode: Cyberpunk frequency slide
+            if (isExtremeNight) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(580, now);
+                osc.frequency.linearRampToValueAtTime(760, now + 0.035);
+                gain.gain.setValueAtTime(0.016, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.04);
+                return;
+            }
+
+            // Goofball Mode: Rubbery stretch bend
+            if (isGoofball) {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(330, now);
+                osc.frequency.exponentialRampToValueAtTime(780, now + 0.04);
+                gain.gain.setValueAtTime(0.035, now);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start(now);
+                osc.stop(now + 0.04);
+                return;
+            }
+
+            // Standard Slide
             const osc = this.ctx.createOscillator();
             const gain = this.ctx.createGain();
-            
             osc.type = 'sine';
             osc.frequency.setValueAtTime(440, now);
             gain.gain.setValueAtTime(0.006, now);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.03);
-            
             osc.connect(gain);
             gain.connect(this.ctx.destination);
             osc.start(now);
             osc.stop(now + 0.03);
         },
-        click() { this.soothingChime(660, 0.25, 0.02); },
-        toggle() { this.soothingChime(750, 0.3, 0.025); },
-        tab() { this.soothingChime(560, 0.22, 0.02); }
+        click() { 
+            if (isExtremeNight) { this.soothingChime(780, 0.18, 0.03); return; }
+            if (isGoofball) { this.soothingChime(580, 0.28, 0.05); return; }
+            this.soothingChime(660, 0.25, 0.02); 
+        },
+        toggle() { 
+            if (isExtremeNight) { this.soothingChime(880, 0.22, 0.035); return; }
+            if (isGoofball) { this.soothingChime(850, 0.35, 0.05); return; }
+            this.soothingChime(750, 0.3, 0.025); 
+        },
+        tab() { 
+            if (isExtremeNight) { this.soothingChime(640, 0.16, 0.03); return; }
+            if (isGoofball) { this.soothingChime(480, 0.26, 0.05); return; }
+            this.soothingChime(560, 0.22, 0.02); 
+        }
     };
 
     document.addEventListener('click', () => SFX.init(), { once: true });
     document.addEventListener('touchstart', () => SFX.init(), { once: true });
 
-    /* ---------------- THEME MANAGER ---------------- */
+    /* THEME MANAGER */
     let currentThemeIndex = 0;
     const themes = [
         { name: "light", title: "โหมดสว่าง" },
@@ -1585,7 +2473,7 @@
         }
     }
 
-    /* ---------------- REAL-TIME DIAGNOSTIC DATE & TIME ---------------- */
+    /* REAL-TIME DIAGNOSTIC DATE & TIME */
     let isDiagLocked = true;
 
     function toggleDiagLock() {
@@ -1634,7 +2522,7 @@
         }
     }, 1000);
 
-    /* ---------------- SVG FLAGS FOR LANGUAGE SWITCH ---------------- */
+    /* SVG FLAGS */
     const flagSVGs = {
         th: `<svg viewBox="0 0 640 480"><g fill-rule="evenodd"><path fill="#f4f5f8" d="M0 0h640v480H0z"/><path fill="#2d2a4a" d="M0 160h640v160H0z"/><path fill="#a51931" d="M0 0h640v80H0zm0 400h640v80H0z"/></g></svg>`,
         en: `<svg viewBox="0 0 60 30"><clipPath id="s"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="t"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#s)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg>`,
@@ -1684,7 +2572,7 @@
             tableHeaderYear: "ปี พ.ศ.",
             tableHeaderRef: "วันอ้างอิง",
             resHeading: "ผลการวิเคราะห์สมุฏฐาน",
-            cardMain: "ธาตุเจ้าเรือน (วันเกิด)",
+            cardMain: "ธาตุเจ้าเรือน (วันเกิด) ▾",
             cardSub2: "ธาตุเจ้าเรือนหลัก (เดือนเกิด)",
             cardSub3: "ธาตุเจ้าเรือนรอง (เดือนเกิด)",
             cardConcept: "วันที่ปฏิสนธิ",
@@ -1732,7 +2620,7 @@
             tableHeaderYear: "Year (A.D.)",
             tableHeaderRef: "Ref Date",
             resHeading: "Diagnostic Analysis Results",
-            cardMain: "Birth Element (Day)",
+            cardMain: "Birth Element (Day) ▾",
             cardSub2: "Primary Element (Month)",
             cardSub3: "Secondary Element (Month)",
             cardConcept: "Conception Date",
@@ -1780,7 +2668,7 @@
             tableHeaderYear: "年份 (公元)",
             tableHeaderRef: "参考日期",
             resHeading: "体质诊断分析结果",
-            cardMain: "本命体质 (出生日)",
+            cardMain: "本命体质 (出生日) ▾",
             cardSub2: "主体质 (出生月)",
             cardSub3: "副体质 (出生月)",
             cardConcept: "受孕日期",
@@ -1889,7 +2777,7 @@
         }
     }
 
-    /* ---------------- INFINITE CYCLIC (360 DEGREES) DRUM PICKER ENGINE ---------------- */
+    /* DRUM PICKER ENGINE */
     const DRUM_ITEM_HEIGHT = 42;
 
     function ensureDrumStepper(container) {
@@ -2023,7 +2911,9 @@
         diagYear: new Date().getFullYear(),
         diagHour: new Date().getHours(),
         diagMin: new Date().getMinutes(),
-        manualConfirmedYear: null
+        manualConfirmedYear: null,
+        currentResultElementKey: 'fire',
+        isBirthCardExpanded: false
     };
 
     const rawRefString = `
@@ -2164,6 +3054,7 @@
         buildDrumColumn('drumDiagMin', mins, selectedState.diagMin, (v) => { 
             selectedState.diagMin = v; 
             validateDiagDateTime();
+            refreshDiagPickers();
         }, true);
     }
 
@@ -2347,28 +3238,27 @@
         
         const mainElems = {
             th: [
-                { t: "เตโชธาตุ (ธาตุไฟ)", d: "มักขี้ร้อน หิวบ่อย ใจร้อน" },
-                { t: "วาโยธาตุ (ธาตุลม)", d: "ผิวแห้ง ช่างพูด นอนน้อย" },
-                { t: "อาโปธาตุ (ธาตุน้ำ)", d: "สมบูรณ์ อวบอิ่ม เยือกเย็น" },
-                { t: "ปถวีธาตุ (ธาตุดิน)", d: "โครงสร้างใหญ่ แข็งแรง หนักแน่น" }
+                { t: "เตโชธาตุ (ธาตุไฟ)", d: "มักขี้ร้อน หิวบ่อย ใจร้อน", key: "fire" },
+                { t: "วาโยธาตุ (ธาตุลม)", d: "ผิวแห้ง ช่างพูด นอนน้อย", key: "wind" },
+                { t: "อาโปธาตุ (ธาตุน้ำ)", d: "สมบูรณ์ อวบอิ่ม เยือกเย็น", key: "water" },
+                { t: "ปถวีธาตุ (ธาตุดิน)", d: "โครงสร้างใหญ่ แข็งแรง หนักแน่น", key: "earth" }
             ],
             en: [
-                { t: "Fire Element (Techo)", d: "Heat-sensitive, frequent hunger, active" },
-                { t: "Wind Element (Vayo)", d: "Dry skin, communicative, light sleeper" },
-                { t: "Water Element (Apo)", d: "Calm demeanor, well-hydrated, cool-tempered" },
-                { t: "Earth Element (Pathavi)", d: "Large skeletal build, robust, stable" }
+                { t: "Fire Element (Techo)", d: "Heat-sensitive, frequent hunger, active", key: "fire" },
+                { t: "Wind Element (Vayo)", d: "Dry skin, communicative, light sleeper", key: "wind" },
+                { t: "Water Element (Apo)", d: "Calm demeanor, well-hydrated, cool-tempered", key: "water" },
+                { t: "Earth Element (Pathavi)", d: "Large skeletal build, robust, stable", key: "earth" }
             ],
             zh: [
-                { t: "火要素 (Techo)", d: "喜凉恶热，易饥易怒" },
-                { t: "风要素 (Vayo)", d: "皮肤干燥，健谈，少眠" },
-                { t: "水要素 (Apo)", d: "体态丰满，沉着冷静" },
-                { t: "土要素 (Pathavi)", d: "骨骼魁梧，体格健壮，沉稳" }
+                { t: "火要素 (Techo)", d: "喜凉恶热，易饥易怒", key: "fire" },
+                { t: "风要素 (Vayo)", d: "皮肤干燥，健谈，少眠", key: "wind" },
+                { t: "水要素 (Apo)", d: "体态丰满，沉着冷静", key: "water" },
+                { t: "土要素 (Pathavi)", d: "骨骼魁梧，体格健壮，沉稳", key: "earth" }
             ]
         };
 
         let elemIdx = (posMain < 90) ? 0 : (posMain < 180 ? 1 : (posMain < 300 ? 2 : 3));
-        let mainTitle = mainElems[currentLang][elemIdx].t;
-        let mainDesc = mainElems[currentLang][elemIdx].d;
+        let selectedMain = mainElems[currentLang][elemIdx];
 
         let segment = Math.floor(pos / 20) + 1; 
         const subMap = {
@@ -2403,7 +3293,9 @@
         let sIdx = (pos < 120) ? 0 : (pos < 240 ? 1 : 2);
 
         return { 
-            main: mainTitle, mainDesc: mainDesc, 
+            key: selectedMain.key,
+            main: selectedMain.t, 
+            mainDesc: selectedMain.d, 
             sub2: baseArray[r2_idx].t, 
             sub3: baseArray[r3_idx].t, 
             season: seasonsMap[currentLang][sIdx]
@@ -2448,11 +3340,43 @@
         return numStr.toString().split('').map(char => thaiNumerals[parseInt(char)] || char).join('');
     }
 
-    /* ---------------- BALANCED, LOW-CONTRAST & EYE-FRIENDLY COLOR ENGINE ---------------- */
-    function getSeasonColorStyle(seasonText) {
-        const isDark = document.body.classList.contains('theme-dark') || isExtremeNight || isEternalMetal;
+    /* DIGITAL GAUGE COLOR STYLES FOR CHEAT CODES */
+    function getCheatModeStyle() {
+        if (isExtremeNight) {
+            return {
+                title: "#00ff7f", // Phosphor green gauge labels
+                val: "#00f3ff",   // Bright VFD Aqua cyan digital readout
+                desc: "#38bdf8",  // Sub-gauge status
+                bg: "#01070e",    // Deep instrument panel housing
+                border: "#00f3ff"
+            };
+        }
+        if (isEternalMetal) {
+            return {
+                title: "#ff6b81",
+                val: "#fff1f2",
+                desc: "#fda4af",
+                bg: "rgba(32, 8, 12, 0.94)",
+                border: "rgba(239, 68, 68, 0.45)"
+            };
+        }
+        if (isGoofball) {
+            return {
+                title: "var(--accent)",
+                val: "#ffffff",
+                desc: "#f5d0fe",
+                bg: "rgba(26, 15, 42, 0.92)",
+                border: "var(--accent)"
+            };
+        }
+        return null;
+    }
 
-        // ฤดูร้อน (Summer) = RED / TERRACOTTA
+    function getSeasonColorStyle(seasonText) {
+        const cheat = getCheatModeStyle();
+        if (cheat) return cheat;
+        const isDark = document.body.classList.contains('theme-dark');
+
         if (seasonText.includes("คิมหันต") || seasonText.includes("ร้อน") || seasonText.includes("Summer") || seasonText.includes("夏")) {
             return {
                 title: isDark ? "#fca5a5" : "#be123c",
@@ -2462,7 +3386,6 @@
                 border: isDark ? "#9f1239" : "#fda4af"
             };
         }
-        // ฤดูฝน (Rainy) = YELLOW / OCHRE / AMBER
         else if (seasonText.includes("วสันต") || seasonText.includes("ฝน") || seasonText.includes("Rainy") || seasonText.includes("雨")) {
             return {
                 title: isDark ? "#fde047" : "#b45309",
@@ -2472,7 +3395,6 @@
                 border: isDark ? "#854d0e" : "#fde047"
             };
         }
-        // ฤดูหนาว (Winter) = BLUE / SLATE CYAN
         else {
             return {
                 title: isDark ? "#7dd3fc" : "#0369a1",
@@ -2485,18 +3407,10 @@
     }
 
     function getElementStyle(elementText) {
-        const isDark = document.body.classList.contains('theme-dark') || isExtremeNight || isEternalMetal;
-        
-        if (isExtremeNight) return { 
-            title: "#00cc52", val: "#00ee5e", desc: "#00993d",
-            bg: "rgba(0, 15, 5, 0.95)", border: "#00aa44" 
-        };
-        if (isEternalMetal) return { 
-            title: "#e04545", val: "#ff5252", desc: "#ad2626",
-            bg: "rgba(25, 0, 0, 0.95)", border: "#8c1515" 
-        };
+        const cheat = getCheatModeStyle();
+        if (cheat) return cheat;
+        const isDark = document.body.classList.contains('theme-dark');
 
-        // FIRE (เตโช / ปิตตะ)
         if (elementText.includes("เตโช") || elementText.includes("ปิตตะ") || elementText.includes("Fire") || elementText.includes("火") || elementText.includes("เมษ") || elementText.includes("สิงห์") || elementText.includes("ธนู")) {
             return {
                 title: isDark ? "#fca5a5" : "#be123c",
@@ -2506,7 +3420,6 @@
                 border: isDark ? "#9f1239" : "#fda4af"
             };
         } 
-        // WIND (วาโย / วาตะ) - ชัดเจน แยกจากน้ำตาลเข้มด้วยสีเหลืองทองอำพัน
         else if (elementText.includes("วาโย") || elementText.includes("วาตะ") || elementText.includes("Wind") || elementText.includes("风") || elementText.includes("เมถุน") || elementText.includes("ตุลย์") || elementText.includes("กุมภ์")) {
             return {
                 title: isDark ? "#fef08a" : "#b45309",
@@ -2516,7 +3429,6 @@
                 border: isDark ? "#eab308" : "#fde047"
             };
         } 
-        // WATER (อาโป / เสมหะ)
         else if (elementText.includes("อาโป") || elementText.includes("เสมหะ") || elementText.includes("Water") || elementText.includes("水") || elementText.includes("กรกฎ") || elementText.includes("พิจิก") || elementText.includes("มีน")) {
             return {
                 title: isDark ? "#7dd3fc" : "#0369a1",
@@ -2526,9 +3438,6 @@
                 border: isDark ? "#0284c7" : "#7dd3fc"
             };
         } 
-        // EARTH (ปถวี / ธาตุดิน)
-        // โหมดสว่าง: สีน้ำตาลอ่อนนุ่มตา (Soft warm beige-brown)
-        // โหมดมืด: สีน้ำตาลช็อกโกแลตเข้ม ตัวหนังสือสว่างเกือบขาว
         else {
             return {
                 title: isDark ? "#fde68a" : "#785133",
@@ -2540,65 +3449,32 @@
         }
     }
 
-    /* Random Aesthetic Palette Generator for Conception Card */
     function getRandomConceptionStyle() {
+        const cheat = getCheatModeStyle();
+        if (cheat) return cheat;
         const isDark = document.body.classList.contains('theme-dark');
         const palettes = [
-            // Soft Mauve / Plum
-            {
-                title: isDark ? "#e9d5ff" : "#7e22ce",
-                val: isDark ? "#ffffff" : "#581c87",
-                desc: isDark ? "#c084fc" : "#6b21a8",
-                bg: isDark ? "rgba(88, 28, 135, 0.32)" : "#faf5ff",
-                border: isDark ? "#a855f7" : "#d8b4fe"
-            },
-            // Soft Rose / Terracotta
-            {
-                title: isDark ? "#fecdd3" : "#be123c",
-                val: isDark ? "#ffffff" : "#881337",
-                desc: isDark ? "#fb7185" : "#9f1239",
-                bg: isDark ? "rgba(136, 19, 55, 0.32)" : "#fff1f2",
-                border: isDark ? "#f43f5e" : "#fda4af"
-            },
-            // Soft Sage / Forest
-            {
-                title: isDark ? "#a7f3d0" : "#047857",
-                val: isDark ? "#ffffff" : "#064e3b",
-                desc: isDark ? "#34d399" : "#065f46",
-                bg: isDark ? "rgba(6, 78, 59, 0.32)" : "#ecfdf5",
-                border: isDark ? "#10b981" : "#6ee7b7"
-            },
-            // Soft Teal / Ocean
-            {
-                title: isDark ? "#99f6e4" : "#0f766e",
-                val: isDark ? "#ffffff" : "#134e4a",
-                desc: isDark ? "#2dd4bf" : "#115e59",
-                bg: isDark ? "rgba(19, 78, 74, 0.32)" : "#f0fdfa",
-                border: isDark ? "#14b8a6" : "#5eead4"
-            },
-            // Soft Indigo / Dusk
-            {
-                title: isDark ? "#c7d2fe" : "#4338ca",
-                val: isDark ? "#ffffff" : "#312e81",
-                desc: isDark ? "#818cf8" : "#3730a3",
-                bg: isDark ? "rgba(49, 46, 129, 0.32)" : "#eef2ff",
-                border: isDark ? "#6366f1" : "#a5b4fc"
-            }
+            { title: isDark ? "#e9d5ff" : "#7e22ce", val: isDark ? "#ffffff" : "#581c87", desc: isDark ? "#c084fc" : "#6b21a8", bg: isDark ? "rgba(88, 28, 135, 0.32)" : "#faf5ff", border: isDark ? "#a855f7" : "#d8b4fe" },
+            { title: isDark ? "#fecdd3" : "#be123c", val: isDark ? "#ffffff" : "#881337", desc: isDark ? "#fb7185" : "#9f1239", bg: isDark ? "rgba(136, 19, 55, 0.32)" : "#fff1f2", border: isDark ? "#f43f5e" : "#fda4af" },
+            { title: isDark ? "#a7f3d0" : "#047857", val: isDark ? "#ffffff" : "#064e3b", desc: isDark ? "#34d399" : "#065f46", bg: isDark ? "rgba(6, 78, 59, 0.32)" : "#ecfdf5", border: isDark ? "#10b981" : "#6ee7b7" },
+            { title: isDark ? "#99f6e4" : "#0f766e", val: isDark ? "#ffffff" : "#134e4a", desc: isDark ? "#2dd4bf" : "#115e59", bg: isDark ? "rgba(19, 78, 74, 0.32)" : "#f0fdfa", border: isDark ? "#14b8a6" : "#5eead4" },
+            { title: isDark ? "#c7d2fe" : "#4338ca", val: isDark ? "#ffffff" : "#312e81", desc: isDark ? "#818cf8" : "#3730a3", bg: isDark ? "rgba(49, 46, 129, 0.32)" : "#eef2ff", border: isDark ? "#6366f1" : "#a5b4fc" }
         ];
-        const randomIdx = Math.floor(Math.random() * palettes.length);
-        return palettes[randomIdx];
+        return palettes[Math.floor(Math.random() * palettes.length)];
     }
 
     function getThaiDayColorStyle(dayNum) {
-        const isDark = document.body.classList.contains('theme-dark') || isExtremeNight || isEternalMetal;
+        const cheat = getCheatModeStyle();
+        if (cheat) return cheat;
+        const isDark = document.body.classList.contains('theme-dark');
         const dayStyles = {
-            0: { title: isDark ? "#fca5a5" : "#be123c", val: isDark ? "#ffffff" : "#881337", desc: isDark ? "#f87171" : "#9f1239", bg: isDark ? "rgba(90, 20, 30, 0.35)" : "#fff1f2", border: isDark ? "#9f1239" : "#fecaca" }, // Sun Red
-            1: { title: isDark ? "#fde047" : "#b45309", val: isDark ? "#ffffff" : "#78350f", desc: isDark ? "#facc15" : "#92400e", bg: isDark ? "rgba(80, 50, 10, 0.35)" : "#fefce8", border: isDark ? "#854d0e" : "#fef08a" }, // Mon Yellow
-            2: { title: isDark ? "#f472b6" : "#be185d", val: isDark ? "#ffffff" : "#831843", desc: isDark ? "#ec4899" : "#9d174d", bg: isDark ? "rgba(95, 12, 45, 0.35)" : "#fdf2f8", border: isDark ? "#be185d" : "#fbcfe8" }, // Tue Pink
-            3: { title: isDark ? "#6ee7b7" : "#047857", val: isDark ? "#ffffff" : "#064e3b", desc: isDark ? "#34d399" : "#065f46", bg: isDark ? "rgba(10, 70, 50, 0.35)" : "#ecfdf5", border: isDark ? "#047857" : "#a7f3d0" }, // Wed Green
-            4: { title: isDark ? "#fdba74" : "#c2410c", val: isDark ? "#ffffff" : "#7c2d12", desc: isDark ? "#fb923c" : "#9a3412", bg: isDark ? "rgba(85, 30, 10, 0.35)" : "#fff7ed", border: isDark ? "#c2410c" : "#fed7aa" }, // Thu Orange
-            5: { title: isDark ? "#7dd3fc" : "#0369a1", val: isDark ? "#ffffff" : "#082f49", desc: isDark ? "#38bdf8" : "#075985", bg: isDark ? "rgba(12, 45, 68, 0.35)" : "#f0f9ff", border: isDark ? "#0369a1" : "#bae6fd" }, // Fri Blue
-            6: { title: isDark ? "#d8b4fe" : "#7e22ce", val: isDark ? "#ffffff" : "#581c87", desc: isDark ? "#c084fc" : "#6b21a8", bg: isDark ? "rgba(70, 15, 110, 0.35)" : "#faf5ff", border: isDark ? "#7e22ce" : "#e9d5ff" }  // Sat Purple
+            0: { title: isDark ? "#fca5a5" : "#be123c", val: isDark ? "#ffffff" : "#881337", desc: isDark ? "#f87171" : "#9f1239", bg: isDark ? "rgba(90, 20, 30, 0.35)" : "#fff1f2", border: isDark ? "#9f1239" : "#fecaca" },
+            1: { title: isDark ? "#fde047" : "#b45309", val: isDark ? "#ffffff" : "#78350f", desc: isDark ? "#facc15" : "#92400e", bg: isDark ? "rgba(80, 50, 10, 0.35)" : "#fefce8", border: isDark ? "#854d0e" : "#fef08a" },
+            2: { title: isDark ? "#f472b6" : "#be185d", val: isDark ? "#ffffff" : "#831843", desc: isDark ? "#ec4899" : "#9d174d", bg: isDark ? "rgba(95, 12, 45, 0.35)" : "#fdf2f8", border: isDark ? "#be185d" : "#fbcfe8" },
+            3: { title: isDark ? "#6ee7b7" : "#047857", val: isDark ? "#ffffff" : "#064e3b", desc: isDark ? "#34d399" : "#065f46", bg: isDark ? "rgba(10, 70, 50, 0.35)" : "#ecfdf5", border: isDark ? "#047857" : "#a7f3d0" },
+            4: { title: isDark ? "#fdba74" : "#c2410c", val: isDark ? "#ffffff" : "#7c2d12", desc: isDark ? "#fb923c" : "#9a3412", bg: isDark ? "rgba(85, 30, 10, 0.35)" : "#fff7ed", border: isDark ? "#c2410c" : "#fed7aa" },
+            5: { title: isDark ? "#7dd3fc" : "#0369a1", val: isDark ? "#ffffff" : "#082f49", desc: isDark ? "#38bdf8" : "#075985", bg: isDark ? "rgba(12, 45, 68, 0.35)" : "#f0f9ff", border: isDark ? "#0369a1" : "#bae6fd" },
+            6: { title: isDark ? "#d8b4fe" : "#7e22ce", val: isDark ? "#ffffff" : "#581c87", desc: isDark ? "#c084fc" : "#6b21a8", bg: isDark ? "rgba(70, 15, 110, 0.35)" : "#faf5ff", border: isDark ? "#7e22ce" : "#e9d5ff" }
         };
         return dayStyles[dayNum] || getElementStyle("วาโย");
     }
@@ -2712,8 +3588,348 @@
         }, spinMs);
     }
 
+    /* -------------------------------------------------------------
+       ELEMENT ATTRIBUTES (INCLUDING LIVETOLIFE EXERCISE DATA)
+       ------------------------------------------------------------- */
+    const elementAttributeData = {
+        earth: {
+            title: { th: "ธาตุดินเจ้าเรือน (เกิดเดือน ต.ค., พ.ย., ธ.ค.)", en: "Earth Element (Born Oct, Nov, Dec)", zh: "土本命体质（出生于十月、十一月、十二月）" },
+            personality: {
+                th: "รูปร่างสูงใหญ่แข็งแรง ล่ำสัน เจ้าเนื้อ ผิวค่อนข้างคล้ำ ผมดกดำ กระดูกใหญ่ ข้อกระดูกหลวม เสียงดังหนักแน่น น้ำหนักตัวมาก น้ำหนักตัวมักขึ้นเร็วแต่ลงช้า",
+                en: "Tall, sturdy, robust physique, darker skin tone, thick black hair, large bone structure, loose joints, deep loud voice, gains weight quickly and loses slowly.",
+                zh: "身材高大健壮、体态结实丰满、肤色偏深、头发浓黑、骨骼宽大、声音沉稳洪亮、增重容易减重慢。"
+            },
+            mindset: {
+                th: "สุขุมรอบคอบ เฉลียวฉลาด จิตใจหนักแน่น มีเป้าหมายในชีวิตสูง ทางตรงข้ามเป็นคนขี้ใจน้อย เข้าทำนองตัวเท่าช้างใจเท่ามด ดื้อรั้น อารมณ์โกรธรุนแรง เมื่อไม่มั่นใจจะลังเลและซึมเศร้า",
+                en: "Prudent, smart, resolute, high life goals. Conversely, overly sensitive ('elephant body, ant heart'), stubborn, intense temper, prone to indecisiveness and depression.",
+                zh: "沉稳谨慎、聪颖沉着、志向高远。反面易多愁敏感、“身如巨象胆如蚁”、固执倔强、暴怒，缺乏安全感时易优柔寡断和抑郁。"
+            },
+            taste: {
+                th: "รสฝาด หวาน มัน และเค็ม",
+                en: "Astringent, Sweet, Oily/Rich, and Salty",
+                zh: "涩味、甜味、甘润油质味及咸味"
+            },
+            foodExample: {
+                drinks: {
+                    th: "น้ำอ้อย น้ำมะพร้าว น้ำตาลสด น้ำมะตูม นมถั่วเหลือง น้ำแคนตาลูป น้ำส้ม น้ำฝรั่ง น้ำลูกเดือย น้ำข้าวโพด น้ำฟักทอง",
+                    en: "Sugarcane juice, Coconut water, Fresh palm sugar nectar, Bael fruit tea, Soy milk, Cantaloupe juice, Orange juice, Guava juice, Job's tears, Sweetcorn, Pumpkin juice.",
+                    zh: "甘蔗汁、椰子水、新鲜棕榈汁、木橘茶、豆浆、哈密瓜汁、橙汁、番石榴汁、薏米露、玉米汁、南瓜露。"
+                },
+                fruits: {
+                    th: "มังคุด ฝรั่ง ถั่วต่างๆ เงาะ",
+                    en: "Mangosteen, Guava, Assorted nuts, Rambutan.",
+                    zh: "山竹、番石榴、各类坚果杂豆、红毛丹。"
+                },
+                veggies: {
+                    th: "ผักกระโดน กล้วยดิบ ยอดมะยม สมอไทย กระถินไทย กระโดนบก กระโดนน้ำ ผักหวาน ขุนอ่อน สะตอ ผักโขม โสน",
+                    en: "Pak Kradon, Raw banana, Star gooseberry leaves, Chebulic myrobalan, White popinac, Pak Waan, Young galangal, Petai, Spinach, Sesbania flowers.",
+                    zh: "青香蒲嫩叶、生香蕉、西印度醋栗嫩叶、诃子、水合欢、甜菜、嫩高良姜、臭豆、菠菜、田菁花。"
+                }
+            },
+            exercise: {
+                style: {
+                    th: "เน้นการเผาผลาญพลังงาน (Cardio & Aerobic) สลายไขมันสะสม และกระตุ้นระบบเมแทบอลิซึมที่ทำงานช้า",
+                    en: "Cardio, aerobic conditioning, weight control, and activating a sluggish metabolic rate.",
+                    zh: "注重有氧减脂（Cardio & Aerobic），加速代谢，消耗多余热量以防脂肪蓄积。"
+                },
+                recommended: {
+                    th: "วิ่งจ๊อกกิ้ง (Jogging), ปั่นจักรยาน, เต้นแอโรบิก, บอดี้เวท, เดินเร็ว หรือว่ายน้ำ อย่างน้อย 30 - 45 นาที สัปดาห์ละ 3 - 5 วัน",
+                    en: "Jogging, cycling, aerobics, bodyweight workouts, brisk walking, or swimming for 30 - 45 minutes, 3 - 5 days/week.",
+                    zh: "慢跑、骑行、有氧操、自重训练、快走或游泳，每次30-45分钟，每周3-5次。"
+                },
+                caution: {
+                    th: "หากมีน้ำหนักตัวมาก ควรเลือกรองเท้าที่ซับแรงกระแทกได้ดี และหลีกเลี่ยงการกระโดดหรือลงน้ำหนักแรงๆ ที่เสี่ยงต่อข้อเข่าและข้อเท้า",
+                    en: "If overweight, wear shock-absorbing footwear and avoid high-impact jumping to protect knees and ankle joints.",
+                    zh: "体重基数较大者注意膝踝关节缓冲，穿着减震跑鞋，避免高冲击跳跃动作。"
+                }
+            },
+            tips: {
+                th: "ผู้มีธาตุเจ้าเรือนเป็นธาตุดิน มักจะไม่ค่อยเจ็บป่วยเพราะธาตุดินเป็นที่ตั้งของกองธาตุทั้งปวง",
+                en: "People with an Earth constitution rarely fall sick, as the Earth element serves as the base for all bodily elements.",
+                zh: "土要素体质者通常极少生病，因土元素是承载人体全身诸要素的基础。"
+            }
+        },
+        fire: {
+            title: { th: "ธาตุไฟเจ้าเรือน (เกิดเดือน ม.ค., ก.พ., มี.ค.)", en: "Fire Element (Born Jan, Feb, Mar)", zh: "火本命体质（出生于一月、二月、三月）" },
+            personality: {
+                th: "มักขี้ร้อน ทนร้อนไม่ค่อยได้ หิวบ่อย กินเก่ง ผม ขน และหนวดอ่อนนิ่ม ผมหงอกเร็ว มีกลิ่นปาก กลิ่นตัวแรง ข้อกระดูกหลวม ผิวหนังย่น ไม่ค่อยอดทน ใจร้อน ความต้องการทางเพศปานกลาง",
+                en: "Heat sensitive, low heat tolerance, frequent hunger, big appetite, soft hair/beard, early greying, strong breath/body odor, loose joints, wrinkled skin, impatient, moderate libido.",
+                zh: "极怕热耐热性差、易饥饿胃口好、体毛胡须柔软、早生白发、体味口臭偏重、关节松、多细纹、急躁欠耐心、欲望适中。"
+            },
+            mindset: {
+                th: "มีเหตุมีผล คล่องแคล่ว มีจิตใจเมตตาอารี มีความสามารถรอบด้าน ตัดสินใจเด็ดขาด ว่องไว เชื่อมั่นในตนเองสูง ทางตรงข้าม หงุดหงิดง่าย เครียดง่าย อ่อนไหวเข้าใจยาก ขาดความอดทน วู่วาม",
+                en: "Rational, agile, generous, multi-talented, decisive and quick, confident. Conversely, quick to anger, stressed, overly sensitive, low patience, impetuous.",
+                zh: "讲道理理性、敏捷能干、慈悲善良、多才多艺、决断果敢迅速、高度自信。反面则易暴躁抓狂、易压力大、敏感善变难琢磨、缺耐性冲动。"
+            },
+            taste: {
+                th: "รสขม เย็น และจืด",
+                en: "Bitter, Cool, and Bland",
+                zh: "苦味、清凉味及淡味"
+            },
+            foodExample: {
+                drinks: {
+                    th: "น้ำแตงโมปั่น น้ำใบบัวบก น้ำใบเตย น้ำเก๊กฮวย",
+                    en: "Watermelon smoothie, Gotu Kola juice, Pandan leaf tea, Chrysanthemum tea.",
+                    zh: "西瓜冰沙、积雪草汁、斑兰叶茶、菊花茶。"
+                },
+                fruits: {
+                    th: "แตงโม มันแกว พุทรา แอปเปิ้ล",
+                    en: "Watermelon, Jicama, Jujube, Apple.",
+                    zh: "西瓜、凉薯、大枣、苹果。"
+                },
+                veggies: {
+                    th: "ผักบุ้ง ตำลึง ผักกระเฉด ผักกระสัง สายบัว ผักกาดจีน ผักกาดนา ผักกาดนกเขา มะระ ผักปรัง มะรุม ผักหนาม มะเขือยาว กุยช่าย",
+                    en: "Morning glory, Ivy gourd, Water mimosa, Lotus stem, Bok choy, Bitter melon, Ceylon spinach, Moringa, Long eggplant, Chinese chives.",
+                    zh: "空心菜、红瓜、水含羞草、莲藕带、小白菜、苦瓜、木耳菜、辣木、长茄子、韭菜。"
+                }
+            },
+            exercise: {
+                style: {
+                    th: "เน้นการออกกำลังกายที่ช่วยระบายความร้อน ผ่อนคลายอารมณ์ และฝึกความใจเย็นในสภาพแวดล้อมที่ร่มรื่น",
+                    en: "Cooling, stress-relieving activities that calm the nervous system and discharge internal heat in shaded conditions.",
+                    zh: "侧重清凉散热、调节情绪波动、培养平心静气的温和运动。"
+                },
+                recommended: {
+                    th: "ว่ายน้ำในร่ม (Swimming), พายเรือคายัค, เดินรับลมในสวนสาธารณะ, โยคะเบาๆ, ปั่นจักรยานในร่ม, ยิงธนู หรือตีกอล์ฟ ช่วงเช้าตรู่หรือเย็นแดดร่ม",
+                    en: "Indoor swimming, kayaking, shaded park walks, gentle yoga, indoor cycling, archery, or golf in the early morning/dusk.",
+                    zh: "室内游泳、皮划艇、林荫道快走、舒缓瑜伽、室内骑行、射箭、高尔夫，宜在清晨或傍晚凉爽时进行。"
+                },
+                caution: {
+                    th: "หลีกเลี่ยงการออกกำลังกายกลางแจ้งช่วงแดดจัดหรืออากาศอบอ้าว เพื่อป้องกันความร้อนสะสมจนเกิดภาวะลมแดด (Heatstroke) หรือไข้กำเริบ จิบน้ำสม่ำเสมอ",
+                    en: "Avoid midday workouts under direct sunlight to prevent heatstroke or fever flare-ups. Sip room-temperature water regularly.",
+                    zh: "严禁在烈日暴晒或闷热不透气环境中运动，谨防体温过高引发热衰竭或中暑，运动中适量补水。"
+                }
+            },
+            tips: {
+                th: "ในช่วงอายุ 16 - 32 ปี มักจะหงุดหงิดง่าย อารมณ์เสียบ่อย เป็นคนเจ้าอารมณ์ ในฤดูร้อนจะเจ็บป่วยง่าย อาจเป็นไข้ตัวร้อนได้ง่าย เพราะธาตุไฟกำเริบ",
+                en: "Ages 16 - 32 are prone to irritability and volatile temper. Vulnerable to acute fevers during the summer due to aggravated fire element.",
+                zh: "在16至32岁期间极易烦躁发脾气。夏季最易罹患热病发高烧，因体内火气亢盛。"
+            }
+        },
+        wind: {
+            title: { th: "ธาตุลมเจ้าเรือน (เกิดเดือน เม.ย., พ.ค., มิ.ย.)", en: "Wind Element (Born Apr, May, Jun)", zh: "风本命体质（出生于四月、五月、六月）" },
+            personality: {
+                th: "ผิวหนังแห้งหยาบกร้าน รูปร่างโปร่ง ผอมบาง ข้อกระดูกมักลั่นเมื่อเคลื่อนไหว ขี้อิจฉา ขี้ขลาด รักง่ายหน่ายเร็ว ทนหนาวไม่ค่อยได้ นอนไม่ค่อยหลับ ช่างพูด เสียงต่ำ ออกเสียงไม่ชัดเจน ความรู้สึกทางเพศไม่ค่อยดี",
+                en: "Dry rough skin, slender/lean frame, popping joints on movement, prone to jealousy/fear, fickle affections, low cold tolerance, light sleeper, talkative with muffled low voice, subdued libido.",
+                zh: "皮肤干燥粗糙、体型纤细消瘦、活动有关节声响、多疑易怯、多变欠常性、极怕冷、多梦易失眠、健谈语声低沉咬字轻、欲望偏低。"
+            },
+            mindset: {
+                th: "ชอบเพ้อฝัน มีจินตนาการสูง มักเป็นศิลปิน ทางตรงข้าม ขี้โมโหง่าย อารมณ์แปรปรวนง่าย ไม่มั่นคง ไม่ตรงต่อเวลา",
+                en: "Visionary, creative dreamer, artistic. Conversely, short-fused temper, capricious moods, emotionally unstable, lacks punctuality.",
+                zh: "爱幻想浪漫、极富想象力、具艺术特质。反面则易发怒急躁、情绪如风多变不稳定、欠缺守时观念。"
+            },
+            taste: {
+                th: "รสเผ็ดร้อน",
+                en: "Pungent and Spicy-Warm",
+                zh: "辛辣温热味"
+            },
+            foodExample: {
+                drinks: {
+                    th: "น้ำขิง น้ำตะไคร้ น้ำข่า น้ำกานพลู",
+                    en: "Ginger tea, Lemongrass tea, Galangal tea, Clove tea.",
+                    zh: "生姜茶、柠檬香茅茶、高良姜饮、丁香茶。"
+                },
+                fruits: {
+                    th: "ส้มโอ กล้วยน้ำว้า มะละกอสุก",
+                    en: "Pomelo, Namwa bananas, Ripe papaya.",
+                    zh: "柚子、芭蕉、熟木瓜。"
+                },
+                veggies: {
+                    th: "ขิง ข่า ตะไคร้ กระชาย พริกไทย กะเพรา ดอกกระเจียว ขมิ้นชัน ชะพลู ผักไผ่ พริกขี้หนูสด สะระแหน่ ผักชีลาว ผักชีล้อม ยี่หร่า",
+                    en: "Ginger, Galangal, Lemongrass, Fingerroot, Pepper, Holy basil, Turmeric, Wild betel leaf, Bird's eye chili, Spearmint, Dill, Fennel, Cumin.",
+                    zh: "生姜、高良姜、柠檬草、凹唇姜、胡椒、九层塔/罗勒、姜黄、假蒌叶、朝天椒、留兰薄荷、莳萝、茴香。"
+                }
+            },
+            exercise: {
+                style: {
+                    th: "เน้นการฝึกสมาธิ กำหนดลมหายใจ ยืดเหยียดกล้ามเนื้อ และเพิ่มความยืดหยุ่นให้ข้อต่อที่แห้งลั่น",
+                    en: "Breathwork, mind-body grounding, mobility, stretching, and improving joint flexibility.",
+                    zh: "注重调息静心、肌腱柔韧拉伸与骨骼关节润滑保养。"
+                },
+                recommended: {
+                    th: "โยคะ (Yoga), พิลาทิส (Pilates), รำไทเก๊ก (Tai Chi), ฤๅษีดัดตน, ยืดเหยียดกล้ามเนื้อ (Stretching) หรือการเดินจงกรม",
+                    en: "Yoga, Pilates, Tai Chi, traditional hermetic stretching (Ruesi Dat Ton), full-body stretching, or mindful walking.",
+                    zh: "瑜伽、普拉提、太极拳、泰式隐士拉伸术、全身静态伸展操、禅意散步。"
+                },
+                caution: {
+                    th: "หลีกเลี่ยงกีฬาที่ใช้แรงกระแทกสูงหรือการออกกำลังกายหักโหมจนหายใจหอบเหนื่อย เพราะจะทำให้ลมตีขึ้น หน้ามืด เวียนศีรษะ และข้อต่อบาดเจ็บได้ง่าย",
+                    en: "Avoid over-exhaustion, intense sprinting, or high-impact jarring motions that trigger vertigo, dizziness, or joint strain.",
+                    zh: "避免剧烈透支体力或大冲击爆发性运动，谨防气机逆乱引起头晕气喘或韧带劳损。"
+                }
+            },
+            tips: {
+                th: "ในช่วงอายุ 32 ปีขึ้นไป มักจะมีอาการเวียนหัว หน้ามืด เป็นลมง่าย ในฤดูฝนจะเจ็บป่วยง่าย เพราะธาตุลมกำเริบ",
+                en: "Age 32 and above is prone to dizziness, vertigo, and lightheadedness. Easily falls ill during the rainy season due to aggravated kinetic wind element.",
+                zh: "32岁以上极易头晕眼花、眩晕气短。雨季最易生病，因风气受阴湿激荡亢进。"
+            }
+        },
+        water: {
+            title: { th: "ธาตุน้ำเจ้าเรือน (เกิดเดือน ก.ค., ส.ค., ก.ย.)", en: "Water Element (Born Jul, Aug, Sep)", zh: "水本命体质（出生于七月、八月、九月）" },
+            personality: {
+                th: "รูปร่างสมบูรณ์ สมส่วน ผิวพรรณสดใส เต่งตึง ตาหวาน น้ำในตามาก ท่าทางเดินมั่นคง ผมดกดำงาม ทนหิว ทนร้อน ทนเย็นได้ดี เสียงโปร่ง ความรู้สึกทางเพศดี อากัปกิริยาเฉื่อย ค่อนข้างขี้เกียจ เจ้าชู้นิดๆ ความจำดี นักวางแผนมือฉกาจ ใจกว้าง มีเหตุผล สู้งาน",
+                en: "Well-proportioned voluptuous build, glowing skin, radiant liquid eyes, steady gait, thick black hair, high endurance to hunger/temperatures, clear voice, healthy libido, relaxed pace, sharp memory, strategic planner, generous and hardworking.",
+                zh: "体态丰满匀称、肌肤水润光泽紧致、眼神清亮多情、步伐稳健、秀发黑亮浓密、耐饥耐寒热能力强、嗓音清脆明朗、欲望良好、举止稳重舒缓、记忆力极佳、善于统筹谋略、心胸宽厚理性、勤奋耐劳。"
+            },
+            mindset: {
+                th: "ทางตรงข้ามคนธาตุน้ำจะเฉื่อยชาเกียจคร้าน การตัดสินใจช้าไม่ค่อยเด็ดขาด อารมณ์เสียง่าย ใจอ่อน",
+                en: "Conversely, prone to sluggishness, procrastination, indecisiveness, occasional irritation, overly soft-hearted.",
+                zh: "反面则行事拖沓迟缓、决策拖泥带水缺决断、偶发情绪化、心软脆弱。"
+            },
+            taste: {
+                th: "รสเปรี้ยว และขม",
+                en: "Sour and Bitter",
+                zh: "酸味及苦味"
+            },
+            foodExample: {
+                drinks: {
+                    th: "น้ำมะนาว น้ำใบบัวบก น้ำมะเขือเทศ น้ำมะขาม น้ำสับปะรด น้ำกระเจี๊ยบ น้ำมะเฟือง",
+                    en: "Lime juice, Gotu Kola juice, Tomato juice, Tamarind juice, Pineapple juice, Roselle tea, Starfruit juice.",
+                    zh: "青柠水、积雪草汁、番茄汁、酸角汁、菠萝汁、洛神花茶、杨桃汁。"
+                },
+                fruits: {
+                    th: "ส้ม สับปะรด มะยม มะกอก มะดัน กระท้อน",
+                    en: "Orange, Pineapple, Star gooseberry, Olive fruit, Madan fruit, Santol.",
+                    zh: "柑橘、菠萝、西印度醋栗、橄榄、酸果、山陀儿。"
+                },
+                veggies: {
+                    th: "ขี้เหล็ก แคบ้าน ชะมวง ผักติ้ว ยอดมะกอก ยอดมะขาม มะอึก มะเขือเครือ สะเดาบ้าน",
+                    en: "Cassia siamea, Sesbania grandiflora, Garcinia cowa, Cratoxylum formosum, Young olive leaves, Young tamarind leaves, Solanum stramoniifolium, Neem leaves.",
+                    zh: "铁刀木叶、大花田菁、酸藤子、黄牛木叶、嫩橄榄叶、酸角嫩芽、毛茄、苦楝嫩叶。"
+                }
+            },
+            exercise: {
+                style: {
+                    th: "เน้นการกระตุ้นให้ร่างกายขับเหงื่อ เพิ่มการไหลเวียนของโลหิตและน้ำเหลืองเพื่อลดอาการบวมน้ำและเฉื่อยชา",
+                    en: "Sweating, fluid circulation, lymph drainage, reducing water retention, and boosting vitality.",
+                    zh: "注重排汗排毒、促进血液及淋巴微循环，消除水肿与身体沉重感。"
+                },
+                recommended: {
+                    th: "แอโรบิกในน้ำ (Aqua Aerobics), เต้นซุมบ้า (Zumba), ปั่นจักรยาน, แบดมินตัน, วิ่งจ๊อกกิ้งเบาๆ หรือกีฬาที่ต้องขยับตัวต่อเนื่องเพื่อกระตุ้นการเผาผลาญ",
+                    en: "Water aerobics, Zumba dancing, cycling, badminton, light jogging, or continuous movement workouts.",
+                    zh: "水中有氧操、尊巴热舞（Zumba）、骑行、羽毛球、慢跑等节奏连续的律动运动。"
+                },
+                caution: {
+                    th: "หลังออกกำลังกายเสร็จให้รีบเช็ดตัวให้แห้งและเปลี่ยนเสื้อผ้าทันที ไม่ควรแช่ตัวในที่เปียกชื้นเพื่อป้องกันเสมหะกำเริบและเป็นหวัด",
+                    en: "Dry off and change damp clothing promptly. Avoid lingering in cold, damp environments to prevent colds or mucus congestion.",
+                    zh: "运动完毕后立即擦干汗水更衣保暖，切忌久留于湿冷环境中以防寒湿感冒。"
+                }
+            },
+            tips: {
+                th: "ในช่วงอายุแรกเกิด - 16 ปี มักจะมีอาการเป็นหวัดคัดจมูก ตาแฉะ ในฤดูหนาวจะเจ็บป่วยง่าย เพราะธาตุน้ำกำเริบ",
+                en: "From infancy to 16 years, prone to frequent colds, runny nose, and watery eyes. Easily sick during winter due to cold water/mucus aggravation.",
+                zh: "自出生至16岁期间极易患感冒伤风、鼻塞眼泪多。冬季最易患病，因体内水湿寒气亢进。"
+            }
+        }
+    };
+
+    /* IN-PLACE ACCORDION TOGGLE */
+    function toggleBirthElementExpansion() {
+        SFX.click();
+        const card = document.getElementById('cardMainElem');
+        selectedState.isBirthCardExpanded = !selectedState.isBirthCardExpanded;
+        
+        card.classList.toggle('expanded', selectedState.isBirthCardExpanded);
+        
+        if (selectedState.isBirthCardExpanded) {
+            renderExpandedBirthPanel();
+            setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+    }
+
+    function renderExpandedBirthPanel() {
+        const panel = document.getElementById('birthExpandedPanel');
+        if (!panel) return;
+
+        const key = selectedState.currentResultElementKey || 'fire';
+        const data = elementAttributeData[key] || elementAttributeData.fire;
+        const lang = currentLang;
+
+        const labels = {
+            th: {
+                persona: "บุคลิกลักษณะประจำธาตุ",
+                mind: "นิสัยและอารมณ์",
+                taste: "รสชาติอาหารปรับสมดุล",
+                food: "ตัวอย่างอาหารและสมุนไพร",
+                drinks: "เครื่องดื่ม:",
+                fruits: "ผลไม้:",
+                veggies: "ผักพื้นบ้าน:",
+                exercise: "การออกกำลังกายที่เหมาะสมตามธาตุ (Live to Life)",
+                exStyle: "รูปแบบการออกกำลังกาย:",
+                exRec: "กีฬา/กิจกรรมที่แนะนำ:",
+                exCaution: "ข้อควรระวัง:",
+                tips: "เกร็ดความรู้และฤดูที่ควรระวัง"
+            },
+            en: {
+                persona: "Physical Characteristics",
+                mind: "Personality & Mental Disposition",
+                taste: "Balancing Food Flavors",
+                food: "Dietary Examples & Local Herbs",
+                drinks: "Beverages:",
+                fruits: "Fruits:",
+                veggies: "Local Vegetables:",
+                exercise: "Exercise & Fitness by Element (Live to Life)",
+                exStyle: "Workout Focus:",
+                exRec: "Recommended Sports:",
+                exCaution: "Precautions:",
+                tips: "Health Insights & Seasons to Watch"
+            },
+            zh: {
+                persona: "体质体貌特征",
+                mind: "性格与心智偏向",
+                taste: "调养适宜膳食味",
+                food: "本草饮食蔬果参考",
+                drinks: "饮品：",
+                fruits: "水果：",
+                veggies: "本土蔬菜：",
+                exercise: "要素专属适能运动指南 (Live to Life)",
+                exStyle: "运动导向：",
+                exRec: "推荐运动项目：",
+                exCaution: "运动注意事项：",
+                tips: "健康指南与防病季节"
+            }
+        }[lang];
+
+        panel.innerHTML = `
+            <div class="elem-detail-block">
+                <div class="elem-detail-heading">👤 ${labels.persona}</div>
+                <div class="elem-detail-text">${data.personality[lang]}</div>
+            </div>
+            <div class="elem-detail-block">
+                <div class="elem-detail-heading">🧠 ${labels.mind}</div>
+                <div class="elem-detail-text">${data.mindset[lang]}</div>
+            </div>
+            <div class="elem-detail-block">
+                <div class="elem-detail-heading">🍲 ${labels.taste}</div>
+                <div class="elem-detail-text" style="font-weight:700; color:var(--card-text-val);">${data.taste[lang]}</div>
+            </div>
+            <div class="elem-detail-block">
+                <div class="elem-detail-heading">🥗 ${labels.food}</div>
+                <div class="elem-detail-text">
+                    <div><strong>${labels.drinks}</strong> ${data.foodExample.drinks[lang]}</div>
+                    <div style="margin-top:3px;"><strong>${labels.fruits}</strong> ${data.foodExample.fruits[lang]}</div>
+                    <div style="margin-top:3px;"><strong>${labels.veggies}</strong> ${data.foodExample.veggies[lang]}</div>
+                </div>
+            </div>
+            <div class="elem-detail-block">
+                <div class="elem-detail-heading">🏃‍♂️ ${labels.exercise}</div>
+                <div class="elem-detail-text">
+                    <div><strong>${labels.exStyle}</strong> ${data.exercise.style[lang]}</div>
+                    <div style="margin-top:3px;"><strong>${labels.exRec}</strong> ${data.exercise.recommended[lang]}</div>
+                    <div style="margin-top:3px; color:#f87171;"><strong>${labels.exCaution}</strong> ${data.exercise.caution[lang]}</div>
+                </div>
+            </div>
+            <div class="elem-detail-block">
+                <div class="elem-detail-heading">💡 ${labels.tips}</div>
+                <div class="elem-detail-text">${data.tips[lang]}</div>
+            </div>
+        `;
+    }
+
     function populateResultCards(botDeg, midDeg) {
         const formalData = getFormalElements(midDeg);
+        selectedState.currentResultElementKey = formalData.key;
         const bMonthIndex = getWheelDate(botDeg);
 
         let thetaBirth = (274 - botDeg + 360) % 360;
@@ -2739,6 +3955,10 @@
         document.getElementById('resMainDesc').innerText = formalData.mainDesc;
         applyCardStyle('cardMainElem', getElementStyle(formalData.main));
 
+        if (selectedState.isBirthCardExpanded) {
+            renderExpandedBirthPanel();
+        }
+
         // 2. ธาตุเจ้าเรือนหลัก (เดือนเกิด)
         document.getElementById('resSub2Elem').innerText = formalData.sub2;
         applyCardStyle('cardSub2Elem', getElementStyle(formalData.sub2));
@@ -2747,7 +3967,7 @@
         document.getElementById('resSub3Elem').innerText = formalData.sub3;
         applyCardStyle('cardSub3Elem', getElementStyle(formalData.sub3));
 
-        // 4. วันที่ปฏิสนธิ (สุ่มสีในทุก ๆ รอบที่คำนวณ)
+        // 4. วันที่ปฏิสนธิ
         let conceptYear = birthYear;
         if (conceptObj.monthIndex > birthMonth || (conceptObj.monthIndex === birthMonth && conceptObj.dayNum > birthDay)) {
             conceptYear = birthYear - 1;
@@ -2757,7 +3977,7 @@
         document.getElementById('resConception').innerText = `${conceptObj.dayFormatted} ${conceptObj.monthName}${conceptYearText}`;
         applyCardStyle('cardConception', getRandomConceptionStyle());
 
-        // 5. อุตุสมุฏฐาน (เกิด) - สีเปลี่ยนตามฤดูกาล
+        // 5. อุตุสมุฏฐาน (เกิด)
         document.getElementById('resSeasonBirth').innerText = formalData.season;
         applyCardStyle('cardSeasonBirth', getSeasonColorStyle(formalData.season));
 
@@ -2767,7 +3987,7 @@
         document.getElementById('resZodiacDesc').innerText = zodiac.desc;
         applyCardStyle('cardZodiac', getElementStyle(zodiac.name));
 
-        // 7. อุตุสมุฏฐาน (ปัจจุบัน / ณ วันตรวจ) - สีเปลี่ยนตามฤดูกาล
+        // 7. อุตุสมุฏฐาน (ปัจจุบัน / ณ วันตรวจ)
         let refDate = new Date();
         if (!isDiagLocked) {
             let diagD = selectedState.diagDay;
@@ -2970,6 +4190,10 @@
         SFX.calmSpin(1.5);
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
+        selectedState.isBirthCardExpanded = false;
+        const card = document.getElementById('cardMainElem');
+        if (card) card.classList.remove('expanded');
+
         document.getElementById('resultPanel').style.display = 'none';
         document.getElementById('optionalInfoArea').style.display = 'none';
         
@@ -3038,67 +4262,185 @@
         document.getElementById('currentSeasonValue').innerText = `${prefixMap[currentLang]}${seasonData.name} - ${seasonData.elem}`;
     }
 
-    /* ---------------- SCRIPTURE NAVIGATION ---------------- */
-    const scriptureCategories = ['earth', 'water', 'wind', 'fire', 'country'];
+    /* -------------------------------------------------------------
+       UNIVERSAL INFO MODAL (i BUTTON) WITH WEBSITE USAGE GUIDE
+       ------------------------------------------------------------- */
+    function handleInfoBtnClick() {
+        SFX.click();
+        const isResultScreen = document.getElementById('resultPanel').style.display !== 'none';
+        const lang = currentLang;
 
-    function initDraggableScriptureNav() {
-        const nav = document.getElementById('scriptureNavWrapper');
-        const content = document.getElementById('refContent');
+        if (!isResultScreen) {
+            const titleMap = {
+                th: "คู่มือการใช้งานเว็บไซต์และหลักทฤษฎีแผ่นหมุน",
+                en: "Website User Guide & Wheel Theory",
+                zh: "网站使用指南与轮盘理论说明"
+            };
+            document.getElementById('universalInfoTitle').innerText = titleMap[lang];
 
-        let isDown = false, startX, scrollLeft;
-        if (nav) {
-            nav.addEventListener('mousedown', (e) => {
-                isDown = true;
-                startX = e.pageX - nav.offsetLeft;
-                scrollLeft = nav.scrollLeft;
-            });
-            nav.addEventListener('mouseleave', () => { isDown = false; });
-            nav.addEventListener('mouseup', () => { isDown = false; });
-            nav.addEventListener('mousemove', (e) => {
-                if(!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - nav.offsetLeft;
-                const walk = (x - startX) * 1.6;
-                nav.scrollLeft = scrollLeft - walk;
-            });
-        }
+            if (lang === 'th') {
+                document.getElementById('universalInfoBody').innerHTML = `
+                    <div class="info-section-block">
+                        <div class="info-sub-title">💻 วิธีการใช้งานเว็บไซต์ออนไลน์</div>
+                        <ol style="padding-left: 20px; margin: 4px 0;">
+                            <li><strong>โหมดเลือกวันที่ (อัตโนมัติ):</strong> เลื่อนลูกกลิ้ง Drum Picker เพื่อเลือก วัน เดือน และ ปีเกิด ระบบจะหมุนวงล้อทั้ง 3 วงและคำนวณองศาตามหลักปฏิทิน 100 ปีให้ทันที</li>
+                            <li><strong>โหมดปรับหมุนเอง (Advanced):</strong> กดไอคอนฟันเฟืองเพื่อเปิดแถบเลื่อนองศาวงล่างและวงกลาง สามารถดูพิกัดวันเกิด วันปฏิสนธิ และตารางเทียบปีเกิดได้แบบเรียลไทม์</li>
+                            <li><strong>การล็อคเวลาตรวจ:</strong> กดปุ่ม <em>"ล็อควันและเวลาปัจจุบัน"</em> เพื่อปลดล็อคหากต้องการวินิจฉัยโรคตามวันและเวลาเฉพาะเจาะจงในอดีตหรือขณะตรวจผู้ป่วย</li>
+                            <li><strong>คีย์ลัดคีย์บอร์ด:</strong> สามารถพิมพ์ตัวเลข วันเดือนปีเกิด (เช่น 01012539) บนแป้นพิมพ์เพื่อกรอกข้อมูลอย่างรวดเร็วได้ทันที</li>
+                            <li>กดปุ่ม <strong>"วิเคราะห์สมุฏฐานวินิจฉัย"</strong> เพื่อเริ่มการจำลองการหมุนวงล้อและแสดงผลการวิเคราะห์</li>
+                        </ol>
+                    </div>
+                    <div class="info-section-block">
+                        <div class="info-sub-title">📖 ความเป็นมาและการพัฒนาแผ่นหมุน</div>
+                        <p style="margin:4px 0;">แผ่นหมุนวงกลมนี้ได้รับการค้นคว้าและพัฒนาโดย <strong>แพทย์หญิงเพ็ญนภา ทรัพย์เจริญ</strong> เพื่อช่วยให้แพทย์แผนไทยสามารถวิเคราะห์ธาตุเจ้าเรือน ปัจจัยก่อโรค และจุดอ่อนของสุขภาพได้อย่างสะดวกรวดเร็ว โดยอ้างอิงจากพระคัมภีร์สมุฏฐานวินิจฉัย</p>
+                    </div>
+                    <div class="info-section-block">
+                        <div class="info-sub-title">⚙️ องค์ประกอบของแผ่นหมุนทั้ง 3 ชั้น</div>
+                        <ul style="padding-left: 20px; margin: 4px 0;">
+                            <li><strong>แผ่นที่ 1 (วงล่าง):</strong> แสดงวันและเดือนในรอบ 1 ปี และวันอ้างอิงตามปีเกิด</li>
+                            <li><strong>แผ่นที่ 2 (วงกลาง):</strong> แถบรหัสสีแสดงธาตุเจ้าเรือนหลัก รอง และอุตุสมุฏฐาน</li>
+                            <li><strong>แผ่นที่ 3 (วงบน):</strong> ลูกศรระบุวันเกิดและวันปฏิสนธิ พร้อมช่องเจาะอ่านรหัสสี</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (lang === 'zh') {
+                document.getElementById('universalInfoBody').innerHTML = `
+                    <div class="info-section-block">
+                        <div class="info-sub-title">💻 网站系统使用指南</div>
+                        <ol style="padding-left: 20px; margin: 4px 0;">
+                            <li><strong>自动日期模式：</strong> 滑动三个滚轮选择您的出生日、月份和年份，系统将根据经典历法自动计算角度并同步旋转轮盘。</li>
+                            <li><strong>手动旋转模式：</strong> 点击齿轮按钮可切换至滑块微调模式，实时感应检测出生日、受孕日及生肖参照年份。</li>
+                            <li><strong>诊断时间锁定：</strong> 点击“锁定当前日期与时间”按钮可解锁自定义就诊问诊时间。</li>
+                            <li><strong>键盘极速键入：</strong> 支持直接按键盘输入8位纯数字（如01012539）疾速定位出生日。</li>
+                            <li>点击 <strong>“分析体质诊断”</strong> 开始动能旋转并生成体质身心报告。</li>
+                        </ol>
+                    </div>
+                    <div class="info-section-block">
+                        <div class="info-sub-title">📖 研发背景与历史源流</div>
+                        <p style="margin:4px 0;">本健康轮盘由泰国卫生部 <strong>彭娜帕·萨节伦医学博士 (Dr. Pennapa Subcharoen)</strong> 结合泰医经典《病因诊断全书》（Samutthan Winitchai）与百年阴阳历精密比对研制开发。</p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('universalInfoBody').innerHTML = `
+                    <div class="info-section-block">
+                        <div class="info-sub-title">💻 Website Operating Instructions</div>
+                        <ol style="padding-left: 20px; margin: 4px 0;">
+                            <li><strong>Auto Date Mode:</strong> Scroll the Drum Pickers to select your Birth Day, Month, and Year. All 3 concentric wheels will automatically rotate to their astrological coordinates.</li>
+                            <li><strong>Manual Rotation Mode:</strong> Click the gear icon to toggle manual degree sliders with real-time detection of conception date and reference year table.</li>
+                            <li><strong>Diagnostic Time Lock:</strong> Click "Lock Current Date & Time" to unlock custom clinic timestamp analysis.</li>
+                            <li><strong>Keyboard Quick-Type:</strong> Type 8 digits directly (e.g., 01011996) on your keyboard to instantly select your birth date.</li>
+                            <li>Click <strong>"Analyze Diagnostic Constitution"</strong> to process the wheel animation and generate your report.</li>
+                        </ol>
+                    </div>
+                    <div class="info-section-block">
+                        <div class="info-sub-title">📖 Background & Wheel Theory</div>
+                        <p style="margin:4px 0;">Researched and innovated by <strong>Dr. Pennapa Subcharoen, M.D.</strong> to provide practitioners with an accurate constitutional diagnostic system based on the classical *Samutthan Winitchai* scripture.</p>
+                    </div>
+                `;
+            }
+        } else {
+            const titleMap = {
+                th: "รหัสสีประจำธาตุและวิธีอ่านผลสรุป",
+                en: "Element Color Codes & Diagnostic Summary",
+                zh: "要素颜色编码与综合诊断解读"
+            };
+            document.getElementById('universalInfoTitle').innerText = titleMap[lang];
 
-        if (content) {
-            let touchStartX = 0, touchEndX = 0, touchStartY = 0, touchEndY = 0;
+            if (lang === 'th') {
+                document.getElementById('universalInfoBody').innerHTML = `
+                    <div class="info-section-block">
+                        <div class="info-sub-title">🎨 รหัสสีแถบพิกัดสมุฏฐานโรค (ตามแผ่นหมุน)</div>
+                        <div style="font-size:var(--fs-small); line-height:1.7;">
+                            <div style="margin-bottom:8px;"><strong>ธาตุไฟ (เตโชธาตุ):</strong><br>
+                                • <span class="color-tag-badge color-tag-pink">สีชมพู</span> <strong>พัทธปิตตะ</strong>: โรคเกี่ยวกับถุงน้ำดี ตับ ตับอักเสบ นิ่วในถุงน้ำดี<br>
+                                • <span class="color-tag-badge color-tag-orange">สีส้ม</span> <strong>อพัทธปิตตะ</strong>: น้ำดีในระบบย่อยอาหาร ธาตุพิการ ดีซ่าน<br>
+                                • <span class="color-tag-badge color-tag-red">สีแดง</span> <strong>กำเดา</strong>: ความร้อนภายในร่างกาย ไข้ตัวร้อน ไอ คอแห้ง (ตรงกับฤดูร้อน)
+                            </div>
+                            <div style="margin-bottom:8px;"><strong>ธาตุลม (วาโยธาตุ):</strong><br>
+                                • <span class="color-tag-badge color-tag-yellow">สีเหลือง</span> <strong>หทัยวาตะ</strong>: ลมเกี่ยวกับการเต้นของหัวใจ จิตใจแปรปรวน (ตรงกับฤดูฝน)<br>
+                                • <span class="color-tag-badge color-tag-lightgreen">สีเขียวอ่อน</span> <strong>สัตถกวาตะ</strong>: ลมเสียดแทง เส้นเลือดฝอยแตก ตีบตัน อัมพาต<br>
+                                • <span class="color-tag-badge color-tag-darkgreen">สีเขียวแก่</span> <strong>สุมนาวาตะ</strong>: ลมจากหัวใจและหลอดเลือดใหญ่ เส้นเลือดแดงใหญ่ ความดันโลหิต
+                            </div>
+                            <div style="margin-bottom:8px;"><strong>ธาตุน้ำ (อาโปธาตุ):</strong><br>
+                                • <span class="color-tag-badge color-tag-cyan">สีฟ้า</span> <strong>ศอเสมหะ</strong>: เสมหะทางเดินหายใจส่วนบน ไซนัส คอ หวัด (ตรงกับฤดูหนาว)<br>
+                                • <span class="color-tag-badge color-tag-navy">สีน้ำเงิน</span> <strong>อุระเสมหะ</strong>: เสมหะทรวงอกและปอด หลอดลมอักเสบ ปอดบวม<br>
+                                • <span class="color-tag-badge color-tag-purple">สีม่วง</span> <strong>คูถเสมหะ</strong>: เสมหะทางเดินอาหารส่วนปลาย ท้องเสีย บิด มูกเลือด ลำไส้
+                            </div>
+                            <div><strong>ธาตุดิน (ปถวีธาตุ):</strong><br>
+                                • <span class="color-tag-badge color-tag-black">สีดำ</span> <strong>ปถวีธาตุ</strong>: อวัยวะโครงสร้างแข็ง เนื้อ มดลูก หัวใจ กระดูก
+                            </div>
+                        </div>
+                    </div>
 
-            content.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                touchStartY = e.changedTouches[0].screenY;
-            }, { passive: true });
-
-            content.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                touchEndY = e.changedTouches[0].screenY;
-                handleSwipeGesture();
-            }, { passive: true });
-
-            function handleSwipeGesture() {
-                const diffX = touchEndX - touchStartX;
-                const diffY = touchEndY - touchStartY;
-                if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
-                    const activeTab = document.querySelector('#scriptureNavWrapper .gliding-btn.active');
-                    const currentCat = activeTab ? activeTab.dataset.cat : 'earth';
-                    let idx = scriptureCategories.indexOf(currentCat);
-
-                    if (diffX < 0) {
-                        idx = (idx + 1) % scriptureCategories.length;
-                        const nextCat = scriptureCategories[idx];
-                        const nextBtn = document.querySelector(`#scriptureNavWrapper .gliding-btn[data-cat="${nextCat}"]`);
-                        showCategory(nextCat, nextBtn, 'left');
-                    } else {
-                        idx = (idx - 1 + scriptureCategories.length) % scriptureCategories.length;
-                        const nextCat = scriptureCategories[idx];
-                        const nextBtn = document.querySelector(`#scriptureNavWrapper .gliding-btn[data-cat="${nextCat}"]`);
-                        showCategory(nextCat, nextBtn, 'right');
-                    }
-                }
+                    <div class="info-section-block">
+                        <div class="info-sub-title">📋 วิธีการอ่านผลและการใช้งานหน้าผลลัพธ์</div>
+                        <ul style="padding-left: 20px; margin: 4px 0; font-size:var(--fs-small); line-height:1.6;">
+                            <li><strong>แตะที่การ์ด "ธาตุเจ้าเรือน (วันเกิด)":</strong> เพื่อกางกล่องดูบุคลิกลักษณะ นิสัย รสชาติอาหาร และตัวอย่างอาหารตามธาตุเกิดได้ทันทีโดยไม่ต้องเปิดหน้าต่างใหม่</li>
+                            <li><strong>ช่องหมายเลข 1:</strong> แสดงธาตุเจ้าเรือนหลักของผู้ตรวจ</li>
+                            <li><strong>ช่องหมายเลข 2 และ 3:</strong> แสดงธาตุเจ้าเรือนรอง และพิกัดโรคแทรกซ้อนที่มักเกิดขึ้นเมื่อธาตุเสียสมดุล</li>
+                            <li><strong>อุตุสมุฏฐาน:</strong> สภาพอากาศและฤดูกาลที่ร่างกายมักจะเจ็บป่วยได้ง่ายที่สุด</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (lang === 'zh') {
+                document.getElementById('universalInfoBody').innerHTML = `
+                    <div class="info-section-block">
+                        <div class="info-sub-title">🎨 轮盘病理色带编码体系</div>
+                        <div style="font-size:var(--fs-small); line-height:1.7;">
+                            <div>• <span class="color-tag-badge color-tag-pink">粉红</span> 囊内胆汁 (胆囊炎、结石)</div>
+                            <div>• <span class="color-tag-badge color-tag-orange">橙色</span> 游离胆汁 (消化不良、黄疸)</div>
+                            <div>• <span class="color-tag-badge color-tag-red">红色</span> 炎性郁热 (发烧、内热，夏季发病)</div>
+                            <div>• <span class="color-tag-badge color-tag-yellow">黄色</span> 心动风 (心律、心慌情绪，雨季发病)</div>
+                            <div>• <span class="color-tag-badge color-tag-lightgreen">浅绿</span> 刃切风 (神经刺痛、血管痉挛、中风)</div>
+                            <div>• <span class="color-tag-badge color-tag-darkgreen">深绿</span> 经脉主干风 (主动脉循环、血压病)</div>
+                            <div>• <span class="color-tag-badge color-tag-cyan">浅蓝</span> 咽喉痰湿 (上呼吸道感染，冬季发病)</div>
+                            <div>• <span class="color-tag-badge color-tag-navy">深蓝</span> 胸膈痰湿 (支气管炎、肺炎)</div>
+                            <div>• <span class="color-tag-badge color-tag-purple">紫色</span> 直肠痰湿 (肠炎、腹泻痢疾)</div>
+                            <div>• <span class="color-tag-badge color-tag-black">黑色</span> 实体脏器 (骨骼、肌肉、子宫器官)</div>
+                        </div>
+                    </div>
+                    <div class="info-section-block">
+                        <div class="info-sub-title">📋 结果阅读与交互指南</div>
+                        <ul style="padding-left: 20px; margin: 4px 0; font-size:var(--fs-small); line-height:1.6;">
+                            <li><strong>轻触“本命体质（出生日）”卡片：</strong> 卡片将就地展开，直接展示体质体貌、性格心理、调养适宜膳食味及蔬果饮品推荐。</li>
+                            <li><strong>第1至3栏：</strong> 对应本命体质、兼加体质及人体潜在发病薄弱环节。</li>
+                        </ul>
+                    </div>
+                `;
+            } else {
+                document.getElementById('universalInfoBody').innerHTML = `
+                    <div class="info-section-block">
+                        <div class="info-sub-title">🎨 Diagnostic Color Band Legend</div>
+                        <div style="font-size:var(--fs-small); line-height:1.7;">
+                            <div>• <span class="color-tag-badge color-tag-pink">Pink</span> Bounded Bile (Gallbladder, gallstones)</div>
+                            <div>• <span class="color-tag-badge color-tag-orange">Orange</span> Unbounded Bile (Dyspepsia, jaundice)</div>
+                            <div>• <span class="color-tag-badge color-tag-red">Red</span> Inflammatory Heat (Fevers, Summer season)</div>
+                            <div>• <span class="color-tag-badge color-tag-yellow">Yellow</span> Cardiac Wind (Palpitation, Rainy season)</div>
+                            <div>• <span class="color-tag-badge color-tag-lightgreen">Light Green</span> Piercing Wind (Vascular stroke, numbness)</div>
+                            <div>• <span class="color-tag-badge color-tag-darkgreen">Dark Green</span> Main Trunk Wind (Aortic pressure)</div>
+                            <div>• <span class="color-tag-badge color-tag-cyan">Cyan</span> Pharyngeal Mucus (Upper airways, Winter)</div>
+                            <div>• <span class="color-tag-badge color-tag-navy">Navy</span> Thoracic Mucus (Lungs, bronchitis)</div>
+                            <div>• <span class="color-tag-badge color-tag-purple">Purple</span> Colonic Mucus (Colitis, diarrhea)</div>
+                            <div>• <span class="color-tag-badge color-tag-black">Black</span> Solid Structure (Bones, muscles, organs)</div>
+                        </div>
+                    </div>
+                    <div class="info-section-block">
+                        <div class="info-sub-title">📋 Reading Results & Interactions</div>
+                        <ul style="padding-left: 20px; margin: 4px 0; font-size:var(--fs-small); line-height:1.6;">
+                            <li><strong>Tap the "Birth Element (Day)" Card:</strong> Expands in-place directly on screen to reveal body traits, psychology, balancing tastes, and herbs.</li>
+                            <li><strong>Slots 1 to 3:</strong> Pinpoints primary elements and internal vulnerability paths.</li>
+                        </ul>
+                    </div>
+                `;
             }
         }
+
+        document.getElementById('universalInfoModal').style.display = 'flex';
+    }
+
+    function closeUniversalInfoModal() {
+        SFX.click();
+        document.getElementById('universalInfoModal').style.display = 'none';
     }
 
     const refData = {
